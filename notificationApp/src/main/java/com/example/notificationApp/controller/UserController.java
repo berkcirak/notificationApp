@@ -5,7 +5,6 @@ import com.example.notificationApp.entity.UserDTO;
 import com.example.notificationApp.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.PublicKey;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,9 +18,14 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public User createUser(@RequestBody User user){
+    public User registerUser(@RequestBody User user){
         return userService.createUser(user);
     }
+    @PostMapping("/login")
+    public String loginUser(@RequestBody User user){
+        return userService.verify(user);
+    }
+
     @GetMapping("/list")
     public List<User> getUsers(){
         return userService.getUsers();
