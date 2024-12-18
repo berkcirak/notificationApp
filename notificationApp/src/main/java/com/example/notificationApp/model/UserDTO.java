@@ -1,4 +1,4 @@
-package com.example.notificationApp.entity;
+package com.example.notificationApp.model;
 
 public class UserDTO {
     public String username;

@@ -1,16 +1,13 @@
 package com.example.notificationApp.service;
 
 import com.example.notificationApp.entity.User;
-import com.example.notificationApp.entity.UserDTO;
-import com.example.notificationApp.entity.UserPrincipal;
+import com.example.notificationApp.model.UserDTO;
 import com.example.notificationApp.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -43,19 +40,27 @@ public class UserService {
         return userRepository.findById(userId);
     }
     public User updateUser(UserDTO currentUser, int userId){
-        User userOptional=userRepository.findById(userId).orElseThrow(() -> new RuntimeException("user not found"));
+        User authenticatedUser = getAuthenticatedUser();
+        if (authenticatedUser.getId() != userId){
+            throw new RuntimeException("You are not authorized to update this user");
+        }
+        User toUpdate=userRepository.findById(userId).orElseThrow(() -> new RuntimeException("user not found"));
         if (currentUser.getUsername() != null){
-            userOptional.setUsername(currentUser.getUsername());
+            toUpdate.setUsername(currentUser.getUsername());
         }
         if (currentUser.email != null){
-            userOptional.setEmail(currentUser.getEmail());
+            toUpdate.setEmail(currentUser.getEmail());
         }
         if (currentUser.getPassword() != null){
-            userOptional.setPassword(currentUser.getPassword());
+            toUpdate.setPassword(bCryptPasswordEncoder.encode(currentUser.getPassword()));
         }
-        return userRepository.save(userOptional);
+        return userRepository.save(toUpdate);
     }
     public void deleteUser(int userId){
+        User authenticatedUser = getAuthenticatedUser();
+        if (authenticatedUser.getId() != userId){
+            throw new RuntimeException("You are not authorized to update this user");
+        }
         userRepository.deleteById(userId);
     }
 
@@ -66,7 +71,7 @@ public class UserService {
         }
         return "fail";
     }
-    public User getAuthenticatedUser(User user) {
+    public User getAuthenticatedUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
         if (principal instanceof UserDetails){
