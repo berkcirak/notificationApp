@@ -28,11 +28,11 @@ public class ProductController {
         return productService.getProductById(productId);
     }
     @PutMapping("/update/{productId}")
-    public Product updateProduct(int productId, ProductDTO productDTO){
+    public Product updateProduct(@PathVariable int productId, @RequestBody ProductDTO productDTO){
         return productService.updateProduct(productId, productDTO);
     }
     @DeleteMapping("/delete/{productId}")
-    public void deleteProduct(int productId){
+    public void deleteProduct(@PathVariable int productId){
         productService.deleteProduct(productId);
     }
 

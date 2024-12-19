@@ -40,7 +40,7 @@ public class ProductService {
             product.setTitle(productDTO.getTitle());
         }
         if (productDTO.getLink() != null){
-            product.setLink(product.getLink());
+            product.setLink(productDTO.getLink());
         }
         return productRepository.save(product);
     }

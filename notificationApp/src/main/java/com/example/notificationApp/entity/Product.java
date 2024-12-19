@@ -11,8 +11,12 @@ public class Product {
     private int id;
     private String title;
     private String link;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private User user;
+
+    public Product(){
+
+    }
 
     public Product(String title, String link, User user) {
         this.title = title;
