@@ -1,16 +1,27 @@
 package com.example.notificationApp.entity;
 
 import jakarta.persistence.*;
+import org.springframework.lang.NonNull;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "tbl_users")
+@Table(name = "tbl_users", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "username"),
+        @UniqueConstraint(columnNames = "email")
+})
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotEmpty(message = "Username cannot be empty")
     private String username;
+    @Email
+    @NotEmpty(message = "Email cannot be empty")
     private String email;
+    @NotEmpty(message = "Password cannot be empty")
     private String password;
 
     public User(String username, String email, String password) {
