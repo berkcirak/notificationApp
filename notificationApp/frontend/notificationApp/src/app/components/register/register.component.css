@@ -1,0 +1,98 @@
+/* Ana kapsayıcı stili */
+.register-container {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg,rgb(42, 43, 43),rgb(118, 18, 241));
+    color: #333;
+}
+
+/* Başlık stili */
+.register-container h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #ffffff;
+}
+
+/* Form stili */
+form {
+    background: #ffffff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Etiket stili */
+label {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #333;
+    margin-left: 13px;
+}
+
+/* Giriş alanı stili */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.9s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #6e8efb;
+    outline: none;
+    box-shadow: 0 0 4px rgba(110, 142, 251, 0.5);
+}
+
+/* Buton stili */
+button {
+    width: 95%;
+    margin: auto;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #5c79e6, #935cc3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Mobil uyumlu hale getirme */
+@media (max-width: 768px) {
+    form {
+        padding: 15px 20px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+}

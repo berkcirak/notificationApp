@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { error } from 'console';
 
 @Component({
   selector: 'app-register',
@@ -11,15 +12,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  user = {
+  user ={
     username: '',
     email: '',
     password: ''
   };
+  constructor(private authService: AuthService){}
 
-  constructor(private authService: AuthService) {}
-
-  registerUser() {
+  registerUser(){
     this.authService.register(this.user).subscribe({
       next: (response) => {
         alert('Registration successful!');

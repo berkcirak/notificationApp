@@ -1,0 +1,112 @@
+/* Ana kapsayıcı */
+.welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg,rgb(42, 43, 43),rgb(118, 18, 241));
+  }
+  
+  /* İçerik kapsayıcısı */
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    max-width: 1200px;
+  }
+  
+  /* Sol bölüm */
+  .left-section {
+    flex: 1;
+    margin-right: 50px;
+  }
+  
+  .left-section h1 {
+    font-size: 3rem;
+    color: #1877f2;
+  
+    margin-bottom: 20px;
+  }
+  
+  .left-section p {
+    font-size: 1.2rem;
+    color: #606770;
+    line-height: 1.5;
+  }
+  
+  /* Sağ bölüm */
+  .right-section {
+    background: linear-gradient(135deg,rgb(100, 99, 99),rgb(128, 40, 235));
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  /* Form */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    
+  }
+  
+  .login-form input {
+    margin-bottom: 10px;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #dddfe2;
+    border-radius: 6px;
+  }
+  
+  .login-form input:focus {
+    border-color: #1877f2;
+    outline: none;
+  }
+  
+  .login-button {
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 10px
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .login-button:hover {
+    background-color: #145db2;
+  }
+  
+  .forgot-password {
+    text-align: center;
+    color: #1877f2;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+  
+  hr {
+    border: none;
+    border-top: 1px solid #dddfe2;
+    margin: 20px 0;
+  }
+  
+  .create-account-button {
+    background-color: #42b72a;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .create-account-button:hover {
+    background-color: #36a420;
+  }
+
+  
