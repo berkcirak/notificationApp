@@ -1,6 +1,11 @@
 /* Ana kapsayıcı */
 .welcome-container {
     display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -24,14 +29,14 @@
   
   .left-section h1 {
     font-size: 3rem;
-    color: #1877f2;
+    color:rgb(165, 25, 158);
   
     margin-bottom: 20px;
   }
   
   .left-section p {
     font-size: 1.2rem;
-    color: #606770;
+    color:rgb(165, 25, 158);
     line-height: 1.5;
   }
   
@@ -66,7 +71,7 @@
   }
   
   .login-button {
-    background-color: #1877f2;
+    background-color:rgb(0, 0, 0);
     color: white;
     border: none;
     border-radius: 6px;
@@ -78,7 +83,7 @@
   }
   
   .login-button:hover {
-    background-color: #145db2;
+    background-color:rgb(82, 80, 80);
   }
   
   .forgot-password {
@@ -96,7 +101,7 @@
   }
   
   .create-account-button {
-    background-color: #42b72a;
+    background-color:rgb(0, 0, 0);
     color: white;
     border: none;
     border-radius: 6px;
@@ -106,7 +111,7 @@
   }
   
   .create-account-button:hover {
-    background-color: #36a420;
+    background-color:rgb(90, 89, 90);
   }
 
   

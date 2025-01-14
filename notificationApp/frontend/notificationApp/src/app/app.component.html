@@ -1,23 +1,24 @@
 <div class="main-container">
-    <mat-toolbar color="primary" class="top-navbar">
-      <span class="app-title">NotificationApp</span>
-      <span class="spacer"></span>
-      <div class="user-section">
-        <button mat-button (click)="goToProfile()">{{ username }}</button>
-        <button mat-button color="warn" (click)="logout()">Logout</button>
-      </div>
-    </mat-toolbar>
-  
-    <div class="content-container">
-      <mat-nav-list class="side-navbar">
-        <a mat-list-item routerLink="/home" routerLinkActive="active-link">Anasayfa</a>
-        <a mat-list-item routerLink="/add-product" routerLinkActive="active-link">Ürün Ekle</a>
-        <a mat-list-item routerLink="/my-products" routerLinkActive="active-link">Ürünlerim</a>
-      </mat-nav-list>
-  
-      <div class="router-container">
-        <router-outlet></router-outlet>
-      </div>
+  <mat-toolbar *ngIf="!isAuthRoute" color="primary" class="top-navbar">
+    <span class="app-title">NotificationApp</span>
+    <span class="spacer"></span>
+    <div class="user-section">
+      <button mat-button (click)="goToProfile()">{{ username }}</button>
+      <button mat-button color="warn" (click)="logout()">Logout</button>
+    </div>
+  </mat-toolbar>
+
+  <div class="content-container">
+    <mat-nav-list *ngIf="!isAuthRoute" class="side-navbar">
+      <a mat-list-item [routerLink]="['/homepage']" routerLink="active-link">Anasayfa</a>
+      <a mat-list-item [routerLink]="['/addproduct']" routerLink="active-link">Ürün Ekle</a>
+      <a mat-list-item [routerLink]="['/myproducts']" routerLink="active-link">Ürünlerim</a>
+    </mat-nav-list>
+
+    <div class="router-container">
+      <router-outlet></router-outlet>
     </div>
   </div>
-  
+
+ 
+</div>

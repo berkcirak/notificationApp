@@ -23,7 +23,7 @@
 
 /* Form stili */
 form {
-    background: #ffffff;
+    background: linear-gradient(135deg,rgb(100, 99, 99),rgb(128, 40, 235));
     padding: 20px 30px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
@@ -71,7 +71,7 @@ button {
     font-size: 1rem;
     font-weight: bold;
     color: #ffffff;
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    background: linear-gradient(135deg,rgb(0, 0, 0),rgb(66, 36, 102));
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -95,4 +95,8 @@ button:active {
     h2 {
         font-size: 1.8rem;
     }
+}
+p{
+    cursor:pointer;
+    margin-left: 15px;
 }

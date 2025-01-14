@@ -1,1 +1,12 @@
-<p>login works!</p>
+<div class="login-container">
+    <div class="form-container">
+        <form class="login-form" (submit)="login()">
+            <input type="text" name="username" [(ngModel)]="username" 
+            placeholder="username" required>
+            <input type="password" name="password" [(ngModel)]="password" 
+            placeholder="password" required>
+            <p (click)="goToRegister()">Hesabım yok</p>
+            <button type="submit" class="login-button">Giriş Yap</button>
+        </form>
+    </div>
+</div>
