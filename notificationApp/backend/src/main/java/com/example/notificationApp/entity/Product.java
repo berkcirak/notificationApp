@@ -10,6 +10,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
+    private String description;
     private String link;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private User user;
@@ -18,10 +19,19 @@ public class Product {
 
     }
 
-    public Product(String title, String link, User user) {
+    public Product(String title, String description, String link, User user) {
         this.title = title;
         this.link = link;
+        this.description=description;
         this.user = user;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getId() {
