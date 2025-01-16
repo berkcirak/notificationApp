@@ -31,6 +31,10 @@ public class UserController {
         return userService.verify(user);
     }
 
+    @GetMapping("/profile")
+    public User userProfile(){
+        return userService.getUserPrincipal();
+    }
     @GetMapping("/list")
     public List<User> getUsers(){
         return userService.getUsers();

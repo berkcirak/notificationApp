@@ -81,4 +81,15 @@ public class UserService {
         }
         return userRepository.findByUsername(username);
     }
+    public User getUserPrincipal() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            String username = ((UserDetails) authentication.getPrincipal()).getUsername();
+            return userRepository.findByUsername(username); // Veritabanından kullanıcıyı getir
+        }
+
+        throw new RuntimeException("Kullanıcı kimliği doğrulanmamış.");
+    }
+
 }
