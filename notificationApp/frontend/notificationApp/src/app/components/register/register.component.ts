@@ -13,26 +13,25 @@ import { Router } from '@angular/router';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  user ={
-    username: '',
-    email: '',
-    password: ''
-  };
+  
+  username: string = '';
+  password: string = '';
+  email: string = '';
+  
   constructor(private authService: AuthService, private router: Router){}
 
-  registerUser(){
-    this.authService.register(this.user).subscribe({
-      next: (response) => {
-        alert('Registration successful!');
-        console.log(response);
-      },
-      error: (error) => {
-        alert('Registration failed!');
-        console.error(error);
+  register(){
+    this.authService.register(this.username, this.password, this.email).subscribe((res: any) => {
+      if(res){
+        localStorage.setItem('token', res);
+        this.router.navigate(['/homepage']);
       }
-    });
-    this.router.navigate(['/homepage'])
+    }, error => {
+      console.error('register failed: ', error);
+    })
   }
+
+
   goToLogin(){
     this.router.navigate(['/login']);
   }

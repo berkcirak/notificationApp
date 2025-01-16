@@ -1,1 +1,38 @@
-<p>products works!</p>
+<div class="product-container">
+    <h2>Ürünlerim</h2>
+    <ul>
+        <li *ngFor="let product of products">
+            <div class="product-content">
+                <div>
+                    <strong>Başlık:</strong> {{ product.title }}
+                    <strong>Açıklama:</strong> {{ product.description }}
+                    <strong>Bağlantı:</strong> <a [href]="product.link" target="_blank">{{ product.link }}</a>
+                </div>
+                <div class="actions">
+                    <button (click)="editProduct(product)">Update</button>
+                    <button (click)="deleteProduct(product.id)">Delete</button>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <div *ngIf="selectedProduct" class="update-form">
+        <h3>Ürün Güncelle</h3>
+        <form (ngSubmit)="onUpdate()">
+            <label for="title">Başlık</label>
+            <input type="text" id="title" [(ngModel)]="selectedProduct.title" name="title">
+
+            <label for="description">Açıklama</label>
+            <input type="text" id="description" [(ngModel)]="selectedProduct.description" name="description">
+
+            <label for="link">Bağlantı</label>
+            <input type="text" id="link" [(ngModel)]="selectedProduct.link" name="link">
+
+            <button type="submit">Kaydet</button>
+            <button type="button" (click)="cancelEdit()">İptal</button>
+        </form>
+    </div>
+
+
+
+</div>

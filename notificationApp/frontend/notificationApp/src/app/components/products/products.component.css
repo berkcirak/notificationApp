@@ -1,0 +1,116 @@
+.product-container {
+    margin: 20px auto;
+    max-width: 900px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+li {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.actions button {
+    margin: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.actions button:first-child {
+    background-color: #007bff;
+    color: white;
+}
+
+.actions button:first-child:hover {
+    background-color: #0056b3;
+}
+
+.actions button:last-child {
+    background-color: #dc3545;
+    color: white;
+}
+
+.actions button:last-child:hover {
+    background-color: #a71d2a;
+}
+
+.update-form {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.update-form h3 {
+    color: #333;
+}
+
+.update-form label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #555;
+}
+
+.update-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.update-form button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.update-form button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+}
+
+.update-form button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+.update-form button[type="button"] {
+    background-color: #6c757d;
+    color: white;
+}
+
+.update-form button[type="button"]:hover {
+    background-color: #5a6268;
+}

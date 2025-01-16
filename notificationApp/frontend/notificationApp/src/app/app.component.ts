@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   username = 'Kullanıcı Adı';
   isAuthRoute = false;
+  title = 'notificationApp'; // title özelliği tanımlandı
 
   constructor(private router: Router) {
     // Rota değişikliklerini dinleyerek kontrol et
