@@ -7,8 +7,10 @@
         <label for="email">Email:</label>
         <input type="email" id="email" [(ngModel)]="user.email" name="email" required />
 
-        <label for="Country">Uyruk</label>
-        <input type="text" id="country" [(ngModel)]="user.country" name="country" required>
+        <label for="country">Ülke:</label>
+        <select id="country" [(ngModel)]="user.country" name="country" required>
+            <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+        </select>
 
         <label for="Gender">Cinsiyet</label>
         <select id="gender" [(ngModel)]="user.gender" name="gender" required>

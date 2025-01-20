@@ -5,6 +5,7 @@ import { error, profile } from 'console';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MaskPasswordPipe } from '../../pipes/mask-password.pipe';
+import { Countries } from '../../datas/countries';
 
 @Component({
   selector: 'app-profile',
@@ -16,8 +17,12 @@ export class ProfileComponent {
   userProfile: any = null;
   updatedUser: any = {};
   isEditing: boolean = false;
+  countries: string[] =[];
 
-  constructor(private userService: UserService){}
+
+  constructor(private userService: UserService){
+    this.countries = Countries.countries;
+  }
 
   ngOnInit(): void{
     this.loadUserProfile();

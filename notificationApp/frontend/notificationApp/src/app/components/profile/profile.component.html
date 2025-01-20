@@ -31,7 +31,9 @@
         </select>
         
         <label for="country">Ülke:</label>
-        <input type="text" id="country" [(ngModel)]="updatedUser.country">
+        <select id="country" [(ngModel)]="updatedUser.country" name="country" required>
+            <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+        </select>
 
         <label for="password">Şifre:</label>
         <input type="password" id="password" [(ngModel)]="updatedUser.password">

@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { error } from 'console';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
+import { UserService } from '../../services/user.service';
+import { Countries } from '../../datas/countries';
 
 @Component({
   selector: 'app-register',
@@ -15,10 +17,13 @@ import { User } from '../../models/user';
 })
 export class RegisterComponent {
   
-
   user: User = new User;
+  countries: string[] = [];
 
-  constructor(private authService: AuthService, private router: Router){}
+  constructor(private authService: AuthService, private router: Router){
+    this.countries = Countries.countries;
+  }
+
 
   register(){
     console.log('Form Data:', this.user); // Konsola user verilerini yazdır
