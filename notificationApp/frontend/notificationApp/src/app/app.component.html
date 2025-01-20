@@ -3,7 +3,10 @@
     <span class="app-title">NotificationApp</span>
     <span class="spacer"></span>
     <div class="user-section">
-      <button mat-button (click)="goToProfile()">{{ username }}</button>
+      <button mat-button *ngIf="userProfile" (click)="goToProfile()">
+        {{ userProfile.username }}
+      </button>
+      <button mat-button *ngIf="!userProfile" disabled>Guest</button>
       <button mat-button color="warn" (click)="logout()">Logout</button>
     </div>
   </mat-toolbar>
@@ -19,6 +22,4 @@
       <router-outlet></router-outlet>
     </div>
   </div>
-
- 
 </div>

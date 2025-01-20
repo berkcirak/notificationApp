@@ -1,1 +1,42 @@
-<p>profile works!</p>
+<div class="profile-container">
+    <h1>Profilim</h1>
+    <div *ngIf="userProfile; else loading">
+        <p><strong>Kullanıcı Adı:</strong> {{ userProfile.username }}</p>
+        <p><strong>Email:</strong> {{userProfile.email}}</p>
+        <p><strong>Cinsiyet:</strong> {{userProfile.gender}}</p>
+        <p><strong>Ülke:</strong> {{userProfile.country}}</p>
+        <p><strong>Şifre:</strong> {{userProfile.password | maskPassword}}</p>
+        <button (click)="editUser()" class="save-button">Güncelle</button>
+    
+        <button (click)="deleteUser()" class="delete-button">Hesabı Sil</button>
+    </div>
+
+    <ng-template #loading>
+        <p>Profil bilgileri yükleniyor...</p>
+    </ng-template>
+
+    <div *ngIf="isEditing" class="update-form">
+        <h3>Profili Güncelle</h3>
+
+        <label for="username">Kullanıcı Adı:</label>
+        <input type="text" id="username" [(ngModel)]="updatedUser.username">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="updatedUser.email">
+
+        <label for="gender">Cinsiyet:</label>
+        <select id="gender" [(ngModel)]="updatedUser.gender">
+            <option value="Kız">Kız</option>
+            <option value="Erkek">Erkek</option>
+        </select>
+        
+        <label for="country">Ülke:</label>
+        <input type="text" id="country" [(ngModel)]="updatedUser.country">
+
+        <label for="password">Şifre:</label>
+        <input type="password" id="password" [(ngModel)]="updatedUser.password">
+
+        <button (click)="saveUpdatedUser()" class="save-button">Kaydet</button>
+        <button (click)="cancelEdit()" class="delete-button">İptal</button>
+    </div> 
+</div>

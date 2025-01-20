@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { error } from 'console';
 import { Router } from '@angular/router';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-register',
@@ -14,14 +15,14 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
   
-  username: string = '';
-  password: string = '';
-  email: string = '';
-  
+
+  user: User = new User;
+
   constructor(private authService: AuthService, private router: Router){}
 
   register(){
-    this.authService.register(this.username, this.password, this.email).subscribe((res: any) => {
+    console.log('Form Data:', this.user); // Konsola user verilerini yazdır
+    this.authService.register(this.user).subscribe((res: any) => {
       if(res){
         localStorage.setItem('token', res);
         this.router.navigate(['/homepage']);

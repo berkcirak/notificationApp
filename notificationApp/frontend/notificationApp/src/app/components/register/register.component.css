@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: linear-gradient(135deg,rgb(42, 43, 43),rgb(118, 18, 241));
+    background: linear-gradient(135deg,rgb(126, 125, 125),rgb(207, 207, 207));
     color: #333;
 }
 
@@ -23,7 +23,7 @@
 
 /* Form stili */
 form {
-    background: linear-gradient(135deg,rgb(100, 99, 99),rgb(128, 40, 235));
+    background: linear-gradient(135deg,rgb(100, 99, 99),rgb(42, 39, 48));
     padding: 20px 30px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
@@ -70,8 +70,8 @@ button {
     padding: 10px 15px;
     font-size: 1rem;
     font-weight: bold;
-    color: #ffffff;
-    background: linear-gradient(135deg,rgb(0, 0, 0),rgb(66, 36, 102));
+    color:rgb(255, 255, 255);
+    background: linear-gradient(135deg,rgb(34, 34, 34),rgb(34, 34, 34));
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -79,7 +79,7 @@ button {
 }
 
 button:hover {
-    background: linear-gradient(135deg, #5c79e6, #935cc3);
+    background: linear-gradient(135deg,rgb(22, 22, 22),rgb(22, 22, 22));
 }
 
 button:active {

@@ -1,15 +1,26 @@
 <div class="register-container">
     <h2>Register</h2>
     <form (submit)="register()">
-        <label for="username">Username:</label>
-        <input type="text" id="username" [(ngModel)]="username" name="username" required />
+        <label for="username">Kullanıcı Adı:</label>
+        <input type="text" id="username" [(ngModel)]="user.username" name="username" required />
 
         <label for="email">Email:</label>
-        <input type="email" id="email" [(ngModel)]="email" name="email" required />
+        <input type="email" id="email" [(ngModel)]="user.email" name="email" required />
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" [(ngModel)]="password" name="password" required />
+        <label for="Country">Uyruk</label>
+        <input type="text" id="country" [(ngModel)]="user.country" name="country" required>
+
+        <label for="Gender">Cinsiyet</label>
+        <select id="gender" [(ngModel)]="user.gender" name="gender" required>
+            <option value="" disabled selected>Cinsiyetinizi seçin</option>
+            <option value="Kız">Kız</option>
+            <option value="Erkek">Erkek</option>
+        </select>
+        
+
+        <label for="password">Şifre:</label>
+        <input type="password" id="password" [(ngModel)]="user.password" name="password" required />
         <p (click)="goToLogin()">Zaten hesabım var</p>
-        <button type="submit">Register</button>
+        <button type="submit">Kaydol</button>
     </form>
 </div>

@@ -9,7 +9,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg,rgb(42, 43, 43),rgb(118, 18, 241));
+    background: linear-gradient(135deg,rgb(126, 125, 125),rgb(207, 207, 207));
   }
   
   /* İçerik kapsayıcısı */
@@ -29,20 +29,20 @@
   
   .left-section h1 {
     font-size: 3rem;
-    color:rgb(165, 25, 158);
+    color:rgb(43, 39, 42);
   
     margin-bottom: 20px;
   }
   
   .left-section p {
     font-size: 1.2rem;
-    color:rgb(165, 25, 158);
+    color:rgb(83, 74, 83);
     line-height: 1.5;
   }
   
   /* Sağ bölüm */
   .right-section {
-    background: linear-gradient(135deg,rgb(100, 99, 99),rgb(128, 40, 235));
+    background: linear-gradient(135deg,rgb(100, 99, 99),rgb(42, 39, 48));
     padding: 20px 30px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -83,7 +83,8 @@
   }
   
   .login-button:hover {
-    background-color:rgb(82, 80, 80);
+    background-color:rgb(49, 48, 48);
+    cursor: pointer;
   }
   
   .forgot-password {

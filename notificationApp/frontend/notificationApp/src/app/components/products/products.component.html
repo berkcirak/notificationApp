@@ -4,9 +4,9 @@
         <li *ngFor="let product of products">
             <div class="product-content">
                 <div>
-                    <strong>Başlık:</strong> {{ product.title }}
+                    <strong>Başlık:</strong> {{ product.title }}<br>
                     <strong>Açıklama:</strong> {{ product.description }}
-                    <strong>Bağlantı:</strong> <a [href]="product.link" target="_blank">{{ product.link }}</a>
+                    <strong>Bağlantı:</strong> <a [href]="product.link" target="_blank"> {{ product.link }}</a>
                 </div>
                 <div class="actions">
                     <button (click)="editProduct(product)">Update</button>
