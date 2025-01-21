@@ -28,7 +28,9 @@ export class WelcomeComponent {
       // Eğer backend sadece token döndürüyorsa:
       if (res) {
         localStorage.setItem('token', res); // Token'ı kaydetme
-        this.router.navigate(['/homepage']); // Login başarılı olursa yönlendirme
+        this.router.navigate(['/homepage']).then(() =>{
+          window.location.reload();
+        }); // Login başarılı olursa yönlendirme
       }
     }, error => {
       console.error('Login failed:', error); // Hata durumu

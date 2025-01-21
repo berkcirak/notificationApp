@@ -20,7 +20,7 @@ export class ProfileComponent {
   countries: string[] =[];
 
 
-  constructor(private userService: UserService){
+  constructor(private userService: UserService, private router: Router){
     this.countries = Countries.countries;
   }
 
@@ -50,6 +50,7 @@ export class ProfileComponent {
     this.userService.deleteUser(userId).subscribe({
       next: () => {
         console.log('Kullanıcı başarıyla silindi');
+        this.router.navigate(['/welcome'])
       },
       error: (error) => {
         console.error('Kullanıcı silinemedi: ', error);

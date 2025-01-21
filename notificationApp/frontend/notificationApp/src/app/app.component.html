@@ -6,7 +6,7 @@
       <button mat-button *ngIf="userProfile" (click)="goToProfile()">
         {{ userProfile.username }}
       </button>
-      <button mat-button *ngIf="!userProfile" disabled>Guest</button>
+      <button mat-button *ngIf="!userProfile" disabled>Misafir</button>
       <button mat-button color="warn" (click)="logout()">Logout</button>
     </div>
   </mat-toolbar>

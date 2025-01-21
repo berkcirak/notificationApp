@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { response } from 'express';
 import { FormsModule } from '@angular/forms';
 import { error } from 'console';
+import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-login',
   imports: [FormsModule, CommonModule],
@@ -23,7 +24,9 @@ export class LoginComponent {
       // Eğer backend sadece token döndürüyorsa:
       if (res) {
         localStorage.setItem('token', res); // Token'ı kaydetme
-        this.router.navigate(['/homepage']); // Login başarılı olursa yönlendirme
+        this.router.navigate(['/homepage']).then(() => {
+          window.location.reload(); // Sayfayı yeniden yükleme
+        });
       }
     }, error => {
       console.error('Login failed:', error); // Hata durumu
