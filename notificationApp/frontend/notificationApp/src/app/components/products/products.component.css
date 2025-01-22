@@ -16,7 +16,6 @@
 ul {
     list-style: none;
     padding: 0;
-    display: flex;
     gap: 20px;
     justify-content: center;
 }
@@ -25,10 +24,17 @@ li {
     background-color: #fff;
     border-radius: 10px;
     padding: 20px;
-    width: 300px;
+    width: 700px;
+    margin: 40px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
+strong{
+    margin:6px;
+    margin-bottom:14px;
+}
+.texts{
+    border:30px;
+}
 .product-content {
     display: flex;
     justify-content: space-between;
@@ -38,6 +44,7 @@ li {
 .actions button {
     margin: 5px;
     padding: 5px 10px;
+    display: flex;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -45,21 +52,21 @@ li {
 }
 
 .actions button:first-child {
-    background-color: #007bff;
+    background-color: rgb(17, 146, 60);
     color: white;
 }
 
 .actions button:first-child:hover {
-    background-color: #0056b3;
+    background-color: rgb(17, 146, 60);
 }
 
 .actions button:last-child {
-    background-color: #dc3545;
+    background-color:rgb(82, 82, 82);
     color: white;
 }
 
 .actions button:last-child:hover {
-    background-color: #a71d2a;
+    background-color:rgb(95, 95, 95);
 }
 
 .update-form {

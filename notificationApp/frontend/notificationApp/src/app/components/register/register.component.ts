@@ -24,19 +24,27 @@ export class RegisterComponent {
     this.countries = Countries.countries;
   }
 
-
-  register(){
-    console.log('Form Data:', this.user); // Konsola user verilerini yazdır
-    this.authService.register(this.user).subscribe((res: any) => {
-      if(res){
-        localStorage.setItem('token', res);
-        this.router.navigate(['/homepage']);
+  register(registerForm: any) {
+    if (registerForm.invalid) {
+      alert('Lütfen tüm alanları eksiksiz doldurun.');
+      return;
+    }
+  
+    this.authService.register(this.user).subscribe(
+      (res: any) => {
+        if (res) {
+          localStorage.setItem('token', res);
+          this.router.navigate(['/homepage']).then(() => {
+            window.location.reload();
+          });
+        }
+      },
+      (error) => {
+        console.error('Register failed:', error);
       }
-    }, error => {
-      console.error('register failed: ', error);
-    })
+    );
   }
-
+  
 
   goToLogin(){
     this.router.navigate(['/login']);

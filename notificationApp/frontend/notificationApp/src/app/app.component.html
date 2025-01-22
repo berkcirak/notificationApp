@@ -3,11 +3,11 @@
     <span class="app-title">NotificationApp</span>
     <span class="spacer"></span>
     <div class="user-section">
-      <button mat-button *ngIf="userProfile" (click)="goToProfile()">
+      <button mat-button *ngIf="userProfile" (click)="goToProfile()" [ngStyle]="{'color': 'green'}">
         {{ userProfile.username }}
       </button>
       <button mat-button *ngIf="!userProfile" disabled>Misafir</button>
-      <button mat-button color="warn" (click)="logout()">Logout</button>
+      <button mat-button (click)="logout()" [ngStyle]="{'color': 'black'}">Logout</button>
     </div>
   </mat-toolbar>
 
@@ -16,7 +16,12 @@
       <a mat-list-item [routerLink]="['/homepage']" routerLink="active-link">Anasayfa</a>
       <a mat-list-item [routerLink]="['/addproduct']" routerLink="active-link">Ürün Ekle</a>
       <a mat-list-item [routerLink]="['/myproducts']" routerLink="active-link">Ürünlerim</a>
+
     </mat-nav-list>
+
+    <!-- Gradient Divider (Dikey) -->
+    <div class="gradient-divider"></div>
+
 
     <div class="router-container">
       <router-outlet></router-outlet>
