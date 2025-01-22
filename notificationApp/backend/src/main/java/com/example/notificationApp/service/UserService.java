@@ -36,9 +36,11 @@ public class UserService {
     public List<User> getUsers(){
         return userRepository.findAll();
     }
+
     public Optional<User> getUser(int userId){
         return userRepository.findById(userId);
     }
+
     public User updateUser(UserDTO currentUser, int userId){
         User authenticatedUser = getAuthenticatedUser();
         if (authenticatedUser.getId() != userId){
@@ -48,12 +50,19 @@ public class UserService {
         if (currentUser.getUsername() != null){
             toUpdate.setUsername(currentUser.getUsername());
         }
-        if (currentUser.email != null){
+        if (currentUser.getEmail() != null){
             toUpdate.setEmail(currentUser.getEmail());
+        }
+        if (currentUser.getCountry() != null){
+            toUpdate.setCountry(currentUser.getCountry());
+        }
+        if (currentUser.getGender() != null){
+            toUpdate.setGender(currentUser.getGender());
         }
         if (currentUser.getPassword() != null){
             toUpdate.setPassword(bCryptPasswordEncoder.encode(currentUser.getPassword()));
         }
+
         return userRepository.save(toUpdate);
     }
     public void deleteUser(int userId){
