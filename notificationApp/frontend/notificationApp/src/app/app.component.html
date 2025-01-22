@@ -13,10 +13,9 @@
 
   <div class="content-container">
     <mat-nav-list *ngIf="!isAuthRoute" class="side-navbar">
-      <a mat-list-item [routerLink]="['/homepage']" routerLink="active-link">Anasayfa</a>
-      <a mat-list-item [routerLink]="['/addproduct']" routerLink="active-link">Ürün Ekle</a>
-      <a mat-list-item [routerLink]="['/myproducts']" routerLink="active-link">Ürünlerim</a>
-
+      <a mat-list-item [routerLink]="['/homepage']" routerLinkActive="router-link-active" class="list-item">Anasayfa</a>
+      <a mat-list-item [routerLink]="['/addproduct']" routerLinkActive="router-link-active" class="list-item">Ürün Ekle</a>
+      <a mat-list-item [routerLink]="['/myproducts']" routerLinkActive="router-link-active" class="list-item">Ürünlerim</a>        
     </mat-nav-list>
 
     <!-- Gradient Divider (Dikey) -->

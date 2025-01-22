@@ -1,71 +1,43 @@
-<form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
-    <label for="username">Kullanıcı Adı:</label>
-    <input
-        type="text"
-        id="username"
-        [(ngModel)]="user.username"
-        name="username"
-        required
-        #username="ngModel" />
-    <div *ngIf="username.invalid && username.touched">
-        Kullanıcı adı gereklidir.
-    </div>
+<div class="register-container">
+    <h2>Register</h2>
+    <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+        <label for="username">Kullanıcı Adı:</label>
+        <input type="text" id="username" [(ngModel)]="user.username" name="username" required #username="ngModel" />
+        <div *ngIf="username.invalid && username.touched">
+            Kullanıcı adı boş bırakılamaz.
+        </div>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="user.email" name="email" required #email="ngModel" />
+        <div *ngIf="email.invalid && email.touched">
+            Lütfen geçerli bir email adresi giriniz.
+        </div>
 
-    <label for="email">Email:</label>
-    <input
-        type="email"
-        id="email"
-        [(ngModel)]="user.email"
-        name="email"
-        required
-        #email="ngModel" />
-    <div *ngIf="email.invalid && email.touched">
-        Geçerli bir email adresi giriniz.
-    </div>
+        <label for="country">Ülke:</label>
+        <select id="country" [(ngModel)]="user.country" name="country" required #country="ngModel">
+            <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+        </select>
+        <div *ngIf="country.invalid && country.touched">
+            Lütfen bir ülke seçiniz.
+        </div>
 
-    <label for="country">Ülke:</label>
-    <select
-        id="country"
-        [(ngModel)]="user.country"
-        name="country"
-        required
-        #country="ngModel">
-        <option *ngFor="let country of countries" [value]="country">
-            {{ country }}
-        </option>
-    </select>
-    <div *ngIf="country.invalid && country.touched">
-        Lütfen bir ülke seçin.
-    </div>
+        <label for="Gender">Cinsiyet</label>
+        <select id="gender" [(ngModel)]="user.gender" name="gender" required #gender="ngModel">
+            <option value="" disabled selected>Cinsiyetinizi seçin</option>
+            <option value="Kız">Kız</option>
+            <option value="Erkek">Erkek</option>
+        </select>
+        <div *ngIf="gender.invalid && gender.touched">
+            Lütfen bir cinsiyet seçin.
+        </div>        
 
-    <label for="Gender">Cinsiyet</label>
-    <select
-        id="gender"
-        [(ngModel)]="user.gender"
-        name="gender"
-        required
-        #gender="ngModel">
-        <option value="" disabled selected>Cinsiyetinizi seçin</option>
-        <option value="Kız">Kız</option>
-        <option value="Erkek">Erkek</option>
-    </select>
-    <div *ngIf="gender.invalid && gender.touched">
-        Lütfen bir cinsiyet seçin.
-    </div>
+        <label for="password">Şifre:</label>
+        <input type="password" id="password" [(ngModel)]="user.password" name="password" required #password="ngModel" />
+        <div>
+            Şifre en az 4 karakter olmalıdır.
+        </div>
 
-    <label for="password">Şifre:</label>
-    <input
-        type="password"
-        id="password"
-        [(ngModel)]="user.password"
-        name="password"
-        required
-        minlength="4"
-        #password="ngModel" />
-    <div *ngIf="password.invalid && password.touched">
-        Şifre en az 4 karakter olmalıdır.
-    </div>
-
-    <p (click)="goToLogin()">Zaten hesabım var</p>
-    <button type="submit" [disabled]="registerForm.invalid">Kaydol</button>
-</form>
+        <p (click)="goToLogin()">Zaten hesabım var</p>
+        <button type="submit">Kaydol</button>
+    </form>
+</div>

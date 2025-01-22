@@ -38,8 +38,11 @@
   
   .side-navbar {
     width: 300px;
-    background: white;
-    padding: 8px 0;
+    background: white;  
+    padding-top: 200px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .side-navbar a {
@@ -47,6 +50,22 @@
     font-weight: 500;
     text-decoration: none;
   }
+  .list-item{
+    margin: 15px;
+  }
+  .list-item:hover,
+.list-item:active,
+.list-item.router-link-active {
+  background-color: #e0e0e0 !important; /* Hover ve Active rengi */
+  border-radius: 0px !important; /* Köşeleri köşeli yap */
+  box-shadow: none !important; /* Gölgeleri kaldır (eğer varsa) */
+  border-left: 3px solid rgb(17, 146, 60); /* Aktif durumu için sol çizgi ekle */
+}
+
+.list-item {
+  border-radius: 0px !important; /* Varsayılan durumda da köşeli kal */
+}
+
   
   .active-link {
     color: #3f51b5;
@@ -54,7 +73,7 @@
   }
   .gradient-divider {
     height: 100%;
-    width: 3px;
+    width: 2px;
     background: linear-gradient(to bottom,rgb(17, 146, 60),rgb(156, 202, 144)); /* Gradient renkleri */
     margin: 0 auto; /* Kenarlardan biraz boşluk bırak */
     border-radius: 2px; /* Kenarları yuvarlat */
