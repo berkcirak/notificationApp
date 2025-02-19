@@ -6,8 +6,12 @@ import com.example.notificationApp.model.ProductDTO;
 import com.example.notificationApp.repository.ProductRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProductService {
@@ -47,6 +51,7 @@ public class ProductService {
         }
         return productRepository.save(product);
     }
+
     public void deleteProduct(int productId){
         User user = userService.getAuthenticatedUser();
         Product product = productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
@@ -55,6 +60,39 @@ public class ProductService {
         }
         productRepository.deleteById(productId);
     }
+
+
+    //web scraping method
+    public List<Map<String, String>> getAllProductDetails(){
+        List<Product> products = productRepository.findAll();
+        RestTemplate restTemplate = new RestTemplate();
+        List<Map<String, String>> productDetailsList = new ArrayList<>();
+
+        for (Product product: products){
+            System.out.println("Processing product: " + product.getTitle()); // Log ekleyelim
+
+            String productLink = product.getLink();
+            if (productLink == null || productLink.isEmpty()){
+                System.out.println("Skipping product: No link found");
+                continue;
+            }
+            String flaskApiUrl = "http://127.0.0.1:5000/scrape?url=" + productLink;
+            try {
+                Map<String, String> response = restTemplate.getForObject(flaskApiUrl, HashMap.class);
+                if (response != null){
+                    response.put("productId", String.valueOf(product.getId()));
+                    productDetailsList.add(response);
+                    System.out.println("Scraped product: " + response);
+                }
+            } catch (Exception e){
+                System.out.println("Error scraping product: "+ product.getId());
+            }
+        }
+        return productDetailsList;
+    }
+
+
+
 
 
 

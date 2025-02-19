@@ -5,7 +5,9 @@ import com.example.notificationApp.model.ProductDTO;
 import com.example.notificationApp.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.plaf.PanelUI;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/product")
@@ -36,6 +38,9 @@ public class ProductController {
         productService.deleteProduct(productId);
     }
 
-
-
+    //web scraping
+    @GetMapping("/scrape/all")
+    public List<Map<String, String>> scrapeAllProducts(){
+        return productService.getAllProductDetails();
+    }
 }
