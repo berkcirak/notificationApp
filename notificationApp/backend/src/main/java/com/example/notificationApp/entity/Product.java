@@ -11,6 +11,7 @@ public class Product {
     private int id;
     private String title;
     private String description;
+    @Column(columnDefinition = "TEXT")
     private String link;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private User user;
