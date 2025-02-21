@@ -81,6 +81,8 @@ public class ProductService {
                 Map<String, String> response = restTemplate.getForObject(flaskApiUrl, HashMap.class);
                 if (response != null){
                     response.put("productId", String.valueOf(product.getId()));
+                    response.put("productLink", String.valueOf(product.getLink()));
+                    response.put("productTitle", String.valueOf(product.getTitle()));
                     productDetailsList.add(response);
                     System.out.println("Scraped product: " + response);
                 }
