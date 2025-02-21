@@ -13,7 +13,6 @@
             </a>
           </div>
           <div class="actions">
-            <button (click)="editProduct(product)">Update</button>
             <button (click)="deleteProduct(product.productId)">Delete</button>
           </div>
         </div>
@@ -25,9 +24,6 @@
       <form (ngSubmit)="onUpdate()">
         <label for="title">Başlık</label>
         <input type="text" id="title" [(ngModel)]="selectedProduct.productTitle" name="title" />
-  
-        <label for="description">Açıklama</label>
-        <input type="text" id="description" [(ngModel)]="selectedProduct.name" name="description" />
   
         <label for="link">Bağlantı</label>
         <input type="text" id="link" [(ngModel)]="selectedProduct.productLink" name="link" />

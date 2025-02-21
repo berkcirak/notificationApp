@@ -16,7 +16,6 @@ export class AddproductComponent {
 
   product = {
     title: '',
-    description: '', 
     link: ''
   };
 
@@ -28,7 +27,7 @@ export class AddproductComponent {
     this.productService.addProduct(this.product).subscribe({
       next: (response) => {
         alert('Ürün başarıyla eklendi!');
-        this.product ={ title: '', description: '', link: '' };
+        this.product ={ title: '', link: '' };
       },
       error: (err) => {
         console.error(err);

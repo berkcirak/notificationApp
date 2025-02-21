@@ -43,9 +43,6 @@ public class ProductService {
         if (productDTO.getTitle() != null){
             product.setTitle(productDTO.getTitle());
         }
-        if (productDTO.getDescription() != null){
-            product.setDescription(productDTO.getDescription());
-        }
         if (productDTO.getLink() != null){
             product.setLink(productDTO.getLink());
         }
