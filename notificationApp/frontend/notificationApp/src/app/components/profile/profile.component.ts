@@ -93,9 +93,16 @@ export class ProfileComponent {
     }
 
     this.userService.updateUser(userId, updatedUserData).subscribe({
-        next: (updatedProfile) => {
-            console.log('Profil başarıyla güncellendi: ', updatedProfile);
-            this.userProfile = { ...this.userProfile, ...updatedProfile }; // Güncellenen verileri userProfile'e işle
+      next: (response) => {
+          console.log('Profil başarıyla güncellendi:', response);
+          
+          // Yeni token geldiyse localStorage'a kaydet
+          if (response.token) {
+              localStorage.setItem('token', response.token);
+              window.location.reload();
+              console.log("Yeni token kaydedildi.");
+          }
+            this.userProfile = { ...this.userProfile, ...updatedUserData }; // Güncellenen verileri userProfile'e işle
             this.isEditing = false;
         },
         error: (error) => {

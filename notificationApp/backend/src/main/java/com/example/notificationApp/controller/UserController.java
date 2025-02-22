@@ -4,9 +4,12 @@ import com.example.notificationApp.entity.User;
 import com.example.notificationApp.model.UserDTO;
 import com.example.notificationApp.service.JWTService;
 import com.example.notificationApp.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -44,9 +47,20 @@ public class UserController {
         return userService.getUser(userId);
     }
     @PutMapping("/update/{userId}")
-    public User updateUser(@PathVariable int userId, @RequestBody UserDTO user){
-        return userService.updateUser(user, userId);
+    public ResponseEntity<Map<String, String>> updateUser(@PathVariable int userId, @RequestBody UserDTO user) {
+        User updatedUser = userService.updateUser(user, userId);
+
+        // Eğer kullanıcı adını güncellemişse yeni token üret
+        String newToken = jwtService.generateToken(updatedUser.getUsername());
+
+        // Yeni token'ı frontend'e dön
+        Map<String, String> response = new HashMap<>();
+        response.put("token", newToken);
+        response.put("message", "Kullanıcı güncellendi.");
+
+        return ResponseEntity.ok(response);
     }
+
     @DeleteMapping("/delete/{userId}")
     public void deleteUser(@PathVariable int userId){
         userService.deleteUser(userId);
