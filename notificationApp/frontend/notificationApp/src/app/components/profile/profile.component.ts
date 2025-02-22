@@ -9,7 +9,7 @@ import { Countries } from '../../datas/countries';
 
 @Component({
   selector: 'app-profile',
-  imports: [CommonModule, FormsModule, MaskPasswordPipe],
+  imports: [CommonModule, FormsModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -33,7 +33,12 @@ export class ProfileComponent {
     this.userService.getUserProfile().subscribe({
       next:(profile) => {
         this.userProfile = profile;
-        this.updatedUser = { ...profile}
+        this.updatedUser = { 
+          username: profile.username,
+          email: profile.email,
+          gender: profile.gender,
+          country: profile.country
+        };
       },
       error: (err) => {
         console.error('Profil bilgisi alınamadı:', err);
@@ -46,7 +51,7 @@ export class ProfileComponent {
   }
 
   deleteUser(): void{
-    const userId = this.userProfile.id;
+    const userId = this.userProfile.id
     this.userService.deleteUser(userId).subscribe({
       next: () => {
         console.log('Kullanıcı başarıyla silindi');
@@ -57,19 +62,48 @@ export class ProfileComponent {
       }
     })
   }
-  saveUpdatedUser(): void{
+  saveUpdatedUser(): void {
     const userId = this.userProfile.id;
-    this.userService.updateUser(userId, this.updatedUser).subscribe({
-      next: (updatedProfile) => {
-        console.log('Profil başarıyla güncellendi: ', updatedProfile);
-        this.userProfile = updatedProfile;
+    let updatedUserData: any = {}; // Sadece değişen alanları tutacak
+
+    // 🔹 Değişen alanları kontrol et ve updatedUserData içine ekle
+    if (this.updatedUser.username !== this.userProfile.username) {
+        updatedUserData.username = this.updatedUser.username;
+    }
+    if (this.updatedUser.email !== this.userProfile.email) {
+        updatedUserData.email = this.updatedUser.email;
+    }
+    if (this.updatedUser.gender !== this.userProfile.gender) {
+        updatedUserData.gender = this.updatedUser.gender;
+    }
+    if (this.updatedUser.country !== this.userProfile.country) {
+        updatedUserData.country = this.updatedUser.country;
+    }
+
+    // 🔹 Eğer şifre alanı doldurulmuşsa backend'e gönder (aksi halde hiç gönderme)
+    if (this.updatedUser.password && this.updatedUser.password.trim() !== "") {
+        updatedUserData.password = this.updatedUser.password;
+    }
+
+    // Eğer güncellenecek herhangi bir alan yoksa işlemi iptal et
+    if (Object.keys(updatedUserData).length === 0) {
+        console.log("Hiçbir alan değişmedi, güncelleme iptal edildi.");
         this.isEditing = false;
-      },
-      error: (error) => {
-        console.error('Profil güncellemesi başarısız: ', error);
-      }
+        return;
+    }
+
+    this.userService.updateUser(userId, updatedUserData).subscribe({
+        next: (updatedProfile) => {
+            console.log('Profil başarıyla güncellendi: ', updatedProfile);
+            this.userProfile = { ...this.userProfile, ...updatedProfile }; // Güncellenen verileri userProfile'e işle
+            this.isEditing = false;
+        },
+        error: (error) => {
+            console.error('Profil güncellemesi başarısız: ', error);
+        }
     });
-  }
+}
+
   cancelEdit(): void {
     this.isEditing = false;
     this.updatedUser = { ...this.userProfile };

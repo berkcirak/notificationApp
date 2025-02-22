@@ -5,7 +5,7 @@
         <p><strong>Email:</strong> {{userProfile.email}}</p>
         <p><strong>Cinsiyet:</strong> {{userProfile.gender}}</p>
         <p><strong>Ülke:</strong> {{userProfile.country}}</p>
-        <p><strong>Şifre:</strong> {{userProfile.password | maskPassword}}</p>
+        <p><strong>Şifre:</strong>********</p>
         <button (click)="editUser()" class="save-button">Güncelle</button>
     
         <button (click)="deleteUser()" class="delete-button">Hesabı Sil</button>
@@ -36,7 +36,7 @@
         </select>
 
         <label for="password">Şifre:</label>
-        <input type="password" id="password" [(ngModel)]="updatedUser.password">
+        <input type="password" id="password" [(ngModel)]="updatedUser.password" placeholder="********" autocomplete="new-password">
 
         <button (click)="saveUpdatedUser()" class="save-button">Kaydet</button>
         <button (click)="cancelEdit()" class="delete-button">İptal</button>
