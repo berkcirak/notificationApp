@@ -66,7 +66,7 @@ public class ProductService {
         List<Map<String, String>> productDetailsList = new ArrayList<>();
 
         for (Product product: products){
-            System.out.println("Processing product: " + product.getTitle()); // Log ekleyelim
+            System.out.println("Processing product: " + product.getLink()); // Log ekleyelim
 
             String productLink = product.getLink();
             if (productLink == null || productLink.isEmpty()){
@@ -79,7 +79,6 @@ public class ProductService {
                 if (response != null){
                     response.put("productId", String.valueOf(product.getId()));
                     response.put("productLink", String.valueOf(product.getLink()));
-                    response.put("productTitle", String.valueOf(product.getTitle()));
 
                     String productName = response.get("name");
                     String productPrice = response.get("price");
@@ -104,7 +103,7 @@ public class ProductService {
     //scrape method for product
     public Map<String, String> scrapeProduct(int productId){
         Product product = productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
-        System.out.println("Processing product: "+ product.getTitle());
+        System.out.println("Processing product: "+ product.getLink());
         String productLink = product.getLink();
         if (productLink == null || productLink.isEmpty()){
             System.out.println("Skipping product: No link found");
@@ -118,7 +117,6 @@ public class ProductService {
             if (response != null){
                 response.put("productId", String.valueOf(product.getId()));
                 response.put("productLink", product.getLink());
-                response.put("productTitle", product.getTitle());
                 String productName = response.get("name");
                 String productPrice = response.get("price");
                 LocalDateTime scrapedTime = LocalDateTime.now();

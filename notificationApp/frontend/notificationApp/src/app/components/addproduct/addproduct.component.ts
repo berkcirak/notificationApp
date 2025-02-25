@@ -15,7 +15,6 @@ import { ProductService } from '../../services/product.service';
 export class AddproductComponent {
 
   product = {
-    title: '',
     link: ''
   };
 
@@ -27,7 +26,7 @@ export class AddproductComponent {
     this.productService.addProduct(this.product).subscribe({
       next: (response) => {
         alert('Ürün başarıyla eklendi!');
-        this.product ={ title: '', link: '' };
+        this.product ={ link: '' };
       },
       error: (err) => {
         console.error(err);

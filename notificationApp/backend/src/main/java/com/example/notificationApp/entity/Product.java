@@ -12,7 +12,6 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String title;
     @Column(columnDefinition = "TEXT")
     private String link;
 
@@ -30,8 +29,7 @@ public class Product {
 
     }
 
-    public Product(String title, String link, User user) {
-        this.title = title;
+    public Product(String link, User user) {
         this.link = link;
         this.user = user;
     }
@@ -68,13 +66,6 @@ public class Product {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String getLink() {
         return link;

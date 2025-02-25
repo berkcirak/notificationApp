@@ -4,8 +4,7 @@
       <li *ngFor="let product of products" class="product-item" >
         <div class="product-content">
           <div class="texts">
-            <strong>Başlık:</strong> {{ product.title }}<br>
-            <strong>Açıklama:</strong> {{ product.productName }}<br>
+            <strong>Ürün:</strong> {{ product.productName }}<br>
             <strong>Fiyat:</strong> {{ product.productPrice }}<br>
             <strong>Bağlantı:</strong> 
             <a [attr.href]="product.link" target="_blank" rel="noopener noreferrer">
