@@ -35,7 +35,7 @@ public class ProductService {
     public Product getProductById(int productId){
         return productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found")); //user'ın product table'ı icinden cekilecek düzenlenebilir
     }
-    public Product updateProduct(int productId, ProductDTO productDTO){
+  /*  public Product updateProduct(int productId, ProductDTO productDTO){
         User user = userService.getAuthenticatedUser();
         Product product = productRepository.findById(productId).orElseThrow(()->new RuntimeException("Product not found"));
         if (user.getId() != product.getUser().getId()){
@@ -48,7 +48,7 @@ public class ProductService {
             product.setLink(productDTO.getLink());
         }
         return productRepository.save(product);
-    }
+    } */
 
     public void deleteProduct(int productId){
         User user = userService.getAuthenticatedUser();
@@ -56,11 +56,10 @@ public class ProductService {
         if (user.getId() != product.getUser().getId()){
             throw new RuntimeException("You are not authorized for delete this product");
         }
-        productRepository.deleteById(productId);
+        productRepository.deleteById(product.getId());
     }
 
-
-    //web scraping method
+    //web scraping method for productList
     public List<Map<String, String>> getAllProductDetails(){
         List<Product> products = productRepository.findAll();
         RestTemplate restTemplate = new RestTemplate();
@@ -86,14 +85,13 @@ public class ProductService {
                     String productPrice = response.get("price");
                     LocalDateTime scrapedTime = LocalDateTime.now();
 
+                    response.put("scrapedAt", scrapedTime.toString());
+
                     product.setProductName(productName);
                     product.setProductPrice(productPrice);
                     product.setScrapedAt(scrapedTime);
                     productRepository.save(product);
 
-//                    response.put("productName", productName);
-//                    response.put("productPrice", productPrice);
-//                    response.put("scrapedAt", scrapedTime.toString());*
                     productDetailsList.add(response);
                     System.out.println("Scraped product: " + response);
                 }
@@ -103,10 +101,42 @@ public class ProductService {
         }
         return productDetailsList;
     }
+    //scrape method for product
+    public Map<String, String> scrapeProduct(int productId){
+        Product product = productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
+        System.out.println("Processing product: "+ product.getTitle());
+        String productLink = product.getLink();
+        if (productLink == null || productLink.isEmpty()){
+            System.out.println("Skipping product: No link found");
+            throw  new RuntimeException("Product link is missing");
+        }
+        String flaskApiUrl = "http://127.0.0.1:5000/scrape?url=" + productLink;
+        RestTemplate restTemplate = new RestTemplate();
 
+        try{
+            Map<String, String> response = restTemplate.getForObject(flaskApiUrl, HashMap.class);
+            if (response != null){
+                response.put("productId", String.valueOf(product.getId()));
+                response.put("productLink", product.getLink());
+                response.put("productTitle", product.getTitle());
+                String productName = response.get("name");
+                String productPrice = response.get("price");
+                LocalDateTime scrapedTime = LocalDateTime.now();
+                response.put("scrapedAt", scrapedTime.toString());
 
+                product.setProductName(productName);
+                product.setProductPrice(productPrice);
+                product.setScrapedAt(scrapedTime);
+                productRepository.save(product);
 
-
-
-
+                System.out.println("Scraped product: "+ response);
+                return response;
+            }else{
+                throw new RuntimeException("Scraping API returned null response");
+            }
+        }catch (Exception e){
+            System.out.println("Error scraping product: "+productId);
+            throw new RuntimeException("Scraping failed for product: "+ productId, e);
+        }
+    }
 }

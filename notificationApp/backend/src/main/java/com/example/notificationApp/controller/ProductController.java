@@ -19,7 +19,14 @@ public class ProductController {
     }
     @PostMapping("/add")
     public Product addProduct(@RequestBody Product product){
-        return productService.addProduct(product);
+        Product savedProduct = productService.addProduct(product);
+        try{
+            Map<String, String> scrapedData = productService.scrapeProduct(savedProduct.getId());
+            System.out.println("Scraping completed for new product: "+scrapedData);
+        } catch (Exception e){
+            System.err.println("Scraping failed for new product: "+ e.getMessage());
+        }
+        return savedProduct;
     }
     @GetMapping("/list")
     public List<Product> getProducts(){
@@ -29,10 +36,10 @@ public class ProductController {
     public Product getProduct(@PathVariable int productId){
         return productService.getProductById(productId);
     }
-    @PutMapping("/update/{productId}")
+   /* @PutMapping("/update/{productId}")
     public Product updateProduct(@PathVariable int productId, @RequestBody ProductDTO productDTO){
         return productService.updateProduct(productId, productDTO);
-    }
+    } */
     @DeleteMapping("/delete/{productId}")
     public void deleteProduct(@PathVariable int productId){
         productService.deleteProduct(productId);

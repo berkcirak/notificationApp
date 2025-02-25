@@ -1,5 +1,6 @@
 package com.example.notificationApp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -22,6 +23,7 @@ public class Product {
     private LocalDateTime scrapedAt;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JsonIgnore
     private User user;
 
     public Product(){
