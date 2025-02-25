@@ -4,12 +4,12 @@
       <li *ngFor="let product of products" class="product-item" >
         <div class="product-content">
           <div class="texts">
-            <strong>Başlık:</strong> {{ product.productTitle }}<br>
-            <strong>Açıklama:</strong> {{ product.name }}<br>
-            <strong>Fiyat:</strong> {{ product.price }}<br>
+            <strong>Başlık:</strong> {{ product.title }}<br>
+            <strong>Açıklama:</strong> {{ product.productName }}<br>
+            <strong>Fiyat:</strong> {{ product.productPrice }}<br>
             <strong>Bağlantı:</strong> 
             <a [attr.href]="product.link" target="_blank" rel="noopener noreferrer">
-              {{ product.productLink }}
+              {{ product.link }}
             </a>
           </div>
           <div class="actions">
@@ -18,7 +18,7 @@
         </div>
       </li>
     </ul>
-  
+<!--
     <div *ngIf="selectedProduct" class="update-form">
       <h3>Ürün Güncelle</h3>
       <form (ngSubmit)="onUpdate()">
@@ -31,6 +31,7 @@
         <button type="submit">Kaydet</button>
         <button type="button" (click)="cancelEdit()">İptal</button>
       </form>
-    </div>
+    </div> 
+-->
   </div>
   

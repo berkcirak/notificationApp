@@ -2,6 +2,8 @@ package com.example.notificationApp.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "tbl_products")
 public class Product {
@@ -12,6 +14,13 @@ public class Product {
     private String title;
     @Column(columnDefinition = "TEXT")
     private String link;
+
+    private String productName;
+
+    private String productPrice;
+
+    private LocalDateTime scrapedAt;
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private User user;
 
@@ -23,6 +32,30 @@ public class Product {
         this.title = title;
         this.link = link;
         this.user = user;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(String productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public LocalDateTime getScrapedAt() {
+        return scrapedAt;
+    }
+
+    public void setScrapedAt(LocalDateTime scrapedAt) {
+        this.scrapedAt = scrapedAt;
     }
 
     public int getId() {

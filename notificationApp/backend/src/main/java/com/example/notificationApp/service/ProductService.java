@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -80,6 +81,19 @@ public class ProductService {
                     response.put("productId", String.valueOf(product.getId()));
                     response.put("productLink", String.valueOf(product.getLink()));
                     response.put("productTitle", String.valueOf(product.getTitle()));
+
+                    String productName = response.get("name");
+                    String productPrice = response.get("price");
+                    LocalDateTime scrapedTime = LocalDateTime.now();
+
+                    product.setProductName(productName);
+                    product.setProductPrice(productPrice);
+                    product.setScrapedAt(scrapedTime);
+                    productRepository.save(product);
+
+//                    response.put("productName", productName);
+//                    response.put("productPrice", productPrice);
+//                    response.put("scrapedAt", scrapedTime.toString());*
                     productDetailsList.add(response);
                     System.out.println("Scraped product: " + response);
                 }

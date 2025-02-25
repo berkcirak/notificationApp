@@ -24,7 +24,7 @@ export class ProductService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
-    return this.http.get(this.productUrl+'/scrape/all', { headers })
+    return this.http.get(this.productUrl+'/list', { headers })
   }
 
   updateProduct(productId: number, product: any): Observable<any>{

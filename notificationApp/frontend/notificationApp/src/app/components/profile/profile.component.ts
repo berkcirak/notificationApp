@@ -79,19 +79,16 @@ export class ProfileComponent {
     if (this.updatedUser.country !== this.userProfile.country) {
         updatedUserData.country = this.updatedUser.country;
     }
-
     // 🔹 Eğer şifre alanı doldurulmuşsa backend'e gönder (aksi halde hiç gönderme)
     if (this.updatedUser.password && this.updatedUser.password.trim() !== "") {
         updatedUserData.password = this.updatedUser.password;
     }
-
     // Eğer güncellenecek herhangi bir alan yoksa işlemi iptal et
     if (Object.keys(updatedUserData).length === 0) {
         console.log("Hiçbir alan değişmedi, güncelleme iptal edildi.");
         this.isEditing = false;
         return;
     }
-
     this.userService.updateUser(userId, updatedUserData).subscribe({
       next: (response) => {
           console.log('Profil başarıyla güncellendi:', response);
