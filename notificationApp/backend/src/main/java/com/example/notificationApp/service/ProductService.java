@@ -85,10 +85,12 @@ public class ProductService {
                     LocalDateTime scrapedTime = LocalDateTime.now();
 
                     response.put("scrapedAt", scrapedTime.toString());
+                    String inStock = response.get("stock");
 
                     product.setProductName(productName);
                     product.setProductPrice(productPrice);
                     product.setScrapedAt(scrapedTime);
+                    product.setInStock(inStock);
                     productRepository.save(product);
 
                     productDetailsList.add(response);

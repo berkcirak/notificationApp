@@ -21,7 +21,7 @@ public class Product {
 
     private LocalDateTime scrapedAt;
 
-    String inStock = "true";
+    private String inStock = "true";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JsonIgnore
@@ -31,13 +31,13 @@ public class Product {
 
     }
 
-    public Product(String link, User user) {
+    public Product(String link, User user, String inStock) {
         this.link = link;
         this.user = user;
-        this.inStock = "true";
+        this.inStock = inStock;
     }
 
-    public String isInStock() {
+    public String getInStock() {
         return inStock;
     }
 
