@@ -28,7 +28,7 @@ public class ProductController {
         }
         return savedProduct;
     }
-    
+
     @GetMapping("/list")
     public List<Product> getProducts(){
         return productService.getProductsByUserId();
