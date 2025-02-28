@@ -13,7 +13,7 @@ def scrape_product():
         return jsonify({"error": "No URL provided"}), 400
 
     headers = {
-        "User-Agent": "agenInfo"
+        "User-Agent": "agentInfo"
     }
 
     try:
