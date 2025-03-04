@@ -5,7 +5,20 @@
         <div class="product-content">
           <div class="texts">
             <strong>Ürün:</strong> {{ product.productName }}<br>
-            <strong>Fiyat:</strong> {{ product.productPrice }}<br>
+            
+            
+            
+            <strong>Fiyat:</strong>
+            <span *ngIf="product.originalPrice !== 'None'" class="original-price"> 
+              {{ product.originalPrice }}
+            </span>
+            <span [ngClass]="{'discounted-price': product.originalPrice !== 'None', 'normal-price': product.originalPrice === 'None'}">
+              {{ product.productPrice }}
+            </span>
+             <br>
+            
+            
+            
             <strong>Stok Durumu:</strong>
             <span [ngClass]="{'in-stock': product.inStock === 'True', 'out-of-stock': product.inStock === 'False'}">
               {{ product.inStock === 'True' ? 'Stokta var' : 'Stokta yok' }}

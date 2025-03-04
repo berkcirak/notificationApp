@@ -128,5 +128,21 @@ strong{
   .out-of-stock {
     color: red;
     font-weight: bold;
+  }/* Eğer ürün indirimsizse (sadece tek fiyat gösterilecekse) */
+.normal-price {
+    color: black;
+  }
+  
+  /* 🔥 Eğer ürün indirimliyse (yeşil renkte göster) */
+  .discounted-price {
+    color: green;
+    font-weight: bold;
+  }
+  
+  /* 🔥 Eğer indirimli ürün varsa, eski fiyatı üstü çizili göster */
+  .original-price {
+    text-decoration: line-through;
+    color: gray;
+    margin-right: 5px;
   }
   

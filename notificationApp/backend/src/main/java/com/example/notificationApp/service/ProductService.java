@@ -82,6 +82,7 @@ public class ProductService {
 
                     String productName = response.get("name");
                     String productPrice = response.get("price");
+                    String originalPrice = response.get("originalPrice");
                     LocalDateTime scrapedTime = LocalDateTime.now();
 
                     response.put("scrapedAt", scrapedTime.toString());
@@ -89,6 +90,7 @@ public class ProductService {
 
                     product.setProductName(productName);
                     product.setProductPrice(productPrice);
+                    product.setOriginalPrice(originalPrice);
                     product.setScrapedAt(scrapedTime);
                     product.setInStock(inStock);
                     productRepository.save(product);
@@ -123,12 +125,13 @@ public class ProductService {
                 String productPrice = response.get("price");
                 LocalDateTime scrapedTime = LocalDateTime.now();
                 response.put("scrapedAt", scrapedTime.toString());
-
+                String originalPrice = response.get("originalPrice");
                 String isInStock = response.get("stock");
 
                 product.setProductName(productName);
                 product.setProductPrice(productPrice);
                 product.setScrapedAt(scrapedTime);
+                product.setOriginalPrice(originalPrice);
                 product.setInStock(isInStock);
                 productRepository.save(product);
 

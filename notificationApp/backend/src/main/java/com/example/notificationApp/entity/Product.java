@@ -18,6 +18,7 @@ public class Product {
     private String productName;
 
     private String productPrice;
+    private String originalPrice;
 
     private LocalDateTime scrapedAt;
 
@@ -35,6 +36,14 @@ public class Product {
         this.link = link;
         this.user = user;
         this.inStock = inStock;
+    }
+
+    public String getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public void setOriginalPrice(String originalPrice) {
+        this.originalPrice = originalPrice;
     }
 
     public String getInStock() {

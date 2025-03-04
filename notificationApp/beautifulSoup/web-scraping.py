@@ -24,29 +24,22 @@ def scrape_product():
             productName = content.find(class_='pr-new-br')
             productName = productName.get_text(strip=True) if productName else "Ürün adı bulunamadı"
 
-            # ✅ Stok kontrolü
+            # Stok bilgisini kontrol et
             stock_status = content.find_all("button", class_=["sold-out", "notify-me-btn"])
-            is_in_stock = not bool(stock_status)  # Eğer eleman varsa stokta yok, yoksa var
+            is_in_stock = not bool(stock_status)  # Eğer eleman varsa stokta değil, yoksa stokta var
 
-            # ✅ Fiyatları kontrol et
             productPrice_element = content.find("span", class_="prc-dsc")
             originalPrice_element = content.find("span", class_="prc-org")
 
             productPrice = productPrice_element.get_text(strip=True) if productPrice_element else None
             originalPrice = originalPrice_element.get_text(strip=True) if originalPrice_element else None
 
-            # 🔥 Eğer `prc-dsc` yoksa, fiyatı `prc-org` içinden al (indirimsiz fiyatı kullan)
-            if not productPrice:
-                productPrice = originalPrice
-                originalPrice = None  # Eğer indirim yoksa, eski fiyat da yoktur
-
             return jsonify({
                 "name": productName,
-                "price": productPrice if productPrice else "Fiyat bilgisi yok",
+                "price": str(productPrice),
                 "stock": str(is_in_stock),  # True = Stokta var, False = Stokta yok
-                "originalPrice": originalPrice  # Eğer originalPrice yoksa None olacak, "null" string değil
+                "originalPrice": str(originalPrice)
             })
-
         elif "amazon" in url:
             productName = content.find(id = 'productTitle').get_text()
             out_of_stock_element = content.find(id="outOfStock")
