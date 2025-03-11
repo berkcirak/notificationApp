@@ -42,18 +42,28 @@ def scrape_product():
             })
         elif "amazon" in url:
             productName = content.find(id = 'productTitle').get_text()
+            productName = productName.get_text(strip=True) if productName else "Ürün adı bulunamadı"
+
             out_of_stock_element = content.find(id="outOfStock")
             is_in_stock = not bool(out_of_stock_element)
+
+            productPrice = "Fiyat bilgisi yok"
+            originalPrice = None
+
             if is_in_stock:
-                productPrice = content.find(class_="a-price aok-align-center reinventPricePriceToPayMargin priceToPay").get_text()
-                productPrice = productPrice.get_text(strip=True) if productPrice else "Fiyat bilgisi yok"
-            else:
-                productPrice = "Fiyat bilgisi yok"
+                price_element = content.find(class_="a-price aok-align-center reinventPricePriceToPayMargin priceToPay")
+                productPrice = price_element.get_text(strip=True) if price_element else "Fiyat bilgisi yok"
+
+                originalPrice_element = content.find("span", class_= "a-price a-text-price")
+                if originalPrice_element:
+                    offscreen_span = originalPrice_element.find("span", class_ = "a-offscreen")
+                    originalPrice = offscreen_span.get_text(strip=True) if offscreen_span else None
 
             return jsonify({
                 "name": productName,
                 "price": str(productPrice),
-                "stock": str(is_in_stock)
+                "stock": str(is_in_stock),
+                "originalPrice": str(originalPrice)
             })
     except Exception as e:
         return jsonify({"error": str(e)}), 500

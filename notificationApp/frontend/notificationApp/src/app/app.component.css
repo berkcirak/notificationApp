@@ -74,7 +74,7 @@
   .gradient-divider {
     height: 100%;
     width: 2px;
-    background: linear-gradient(to bottom,rgb(17, 146, 60),rgb(156, 202, 144)); /* Gradient renkleri */
+    background: linear-gradient(to bottom,rgb(119, 25, 129),rgb(221, 41, 176)); /* Gradient renkleri */
     margin: 0 auto; /* Kenarlardan biraz boşluk bırak */
     border-radius: 2px; /* Kenarları yuvarlat */
   }
