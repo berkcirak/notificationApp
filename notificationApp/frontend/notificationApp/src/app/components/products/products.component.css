@@ -34,6 +34,7 @@ strong{
 }
 .texts{
     border:30px;
+    margin-top: 60px
 }
 .product-content {
     display: flex;
@@ -49,10 +50,11 @@ strong{
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
+    color: red;
 }
 
 .actions button:first-child {
-    background-color: rgb(17, 146, 60);
+    background-color: rgb(146, 17, 17);
     color: white;
 }
 
@@ -61,12 +63,12 @@ strong{
 }
 
 .actions button:last-child {
-    background-color:rgb(82, 82, 82);
+    background-color:rgb(189, 27, 27);
     color: white;
 }
 
 .actions button:last-child:hover {
-    background-color:rgb(95, 95, 95);
+    background-color:rgb(172, 31, 31);
 }
 
 .update-form {

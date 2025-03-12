@@ -3,7 +3,7 @@
     <span class="app-title">NotificationApp</span>
     <span class="spacer"></span>
     <div class="user-section">
-      <button mat-button *ngIf="userProfile" (click)="goToProfile()" [ngStyle]="{'color': 'green'}">
+      <button mat-button *ngIf="userProfile" (click)="goToProfile()" >
         {{ userProfile.username }}
       </button>
       <button mat-button *ngIf="!userProfile" disabled>Misafir</button>

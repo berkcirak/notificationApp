@@ -3,12 +3,11 @@
     <ul class="product-list">
       <li *ngFor="let product of products" class="product-item" >
         <div class="product-content">
-          <div class="texts">
-            
+          
             <img [src]="product.imageUrl" alt="Product Image" class="product-image" />
-
+          
+            <div class="texts">
             <strong>Ürün:</strong> {{ product.productName }}<br>
-            
             
             
             <strong>Fiyat:</strong>
@@ -30,10 +29,12 @@
             <a [attr.href]="product.link" target="_blank" rel="noopener noreferrer">
               {{ product.link }}
             </a>
+          
           </div>
           <div class="actions">
             <button (click)="deleteProduct(product.id)">Delete</button>
           </div>
+          
         </div>
       </li>
     </ul>

@@ -16,9 +16,11 @@
   .app-title {
     font-size: 1.5rem;
     font-weight: bold;
-    color:rgb(17, 146, 60)
+    color:rgb(65, 14, 124)
   }
-  
+  .user-section button{
+    color:rgb(65, 14, 124)
+  }
   .spacer {
     flex: 1;
   }

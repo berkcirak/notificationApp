@@ -33,12 +33,13 @@ def scrape_product():
 
             productPrice = productPrice_element.get_text(strip=True) if productPrice_element else None
             originalPrice = originalPrice_element.get_text(strip=True) if originalPrice_element else None
-            # Ürün görselini bulma
+
             image_elements = content.find_all("img")
             image_url = None
+
             for img in image_elements:
-                src = img.get("src")
-                if src and "product/media/images" in src:
+                src =img.get("src")
+                if src and "jpg" in src:
                     image_url = src
                     break
 
