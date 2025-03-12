@@ -83,11 +83,13 @@ public class ProductService {
                     String productName = response.get("name");
                     String productPrice = response.get("price");
                     String originalPrice = response.get("originalPrice");
+                    String productImage = response.get("image");
                     LocalDateTime scrapedTime = LocalDateTime.now();
 
                     response.put("scrapedAt", scrapedTime.toString());
                     String inStock = response.get("stock");
 
+                    product.setImageUrl(productImage);
                     product.setProductName(productName);
                     product.setProductPrice(productPrice);
                     product.setOriginalPrice(originalPrice);
@@ -121,17 +123,20 @@ public class ProductService {
             if (response != null){
                 response.put("productId", String.valueOf(product.getId()));
                 response.put("productLink", product.getLink());
-                String productName = response.get("name");
-                String productPrice = response.get("price");
                 LocalDateTime scrapedTime = LocalDateTime.now();
                 response.put("scrapedAt", scrapedTime.toString());
+                String productName = response.get("name");
+                String productPrice = response.get("price");
                 String originalPrice = response.get("originalPrice");
                 String isInStock = response.get("stock");
+                String productImage = response.get("imageUrl");
 
+                product.setImageUrl(productImage);
                 product.setProductName(productName);
                 product.setProductPrice(productPrice);
                 product.setScrapedAt(scrapedTime);
                 product.setOriginalPrice(originalPrice);
+
                 product.setInStock(isInStock);
                 productRepository.save(product);
 

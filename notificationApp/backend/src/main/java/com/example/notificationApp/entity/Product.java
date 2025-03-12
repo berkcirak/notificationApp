@@ -19,7 +19,8 @@ public class Product {
 
     private String productPrice;
     private String originalPrice;
-
+    @Column(columnDefinition = "TEXT")
+    private String imageUrl;
     private LocalDateTime scrapedAt;
 
     private String inStock = "true";
@@ -32,10 +33,19 @@ public class Product {
 
     }
 
-    public Product(String link, User user, String inStock) {
+    public Product(String link, User user, String inStock, String imageUrl) {
         this.link = link;
         this.user = user;
+        this.imageUrl = imageUrl;
         this.inStock = inStock;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getOriginalPrice() {

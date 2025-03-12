@@ -4,6 +4,9 @@
       <li *ngFor="let product of products" class="product-item" >
         <div class="product-content">
           <div class="texts">
+            
+            <img [src]="product.imageUrl" alt="Product Image" class="product-image" />
+
             <strong>Ürün:</strong> {{ product.productName }}<br>
             
             
