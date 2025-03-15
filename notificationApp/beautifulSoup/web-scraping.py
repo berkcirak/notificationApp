@@ -51,29 +51,29 @@ def scrape_product():
                 "imageUrl": image_url
             })
         elif "amazon" in url:
-            productName = content.find(id = 'productTitle').get_text()
+            productName = content.find(id='productTitle')
             productName = productName.get_text(strip=True) if productName else "Ürün adı bulunamadı"
 
             out_of_stock_element = content.find(id="outOfStock")
             is_in_stock = not bool(out_of_stock_element)
 
-            productPrice = "Fiyat bilgisi yok"
-            originalPrice = None
+            price_element = content.find(class_="a-price aok-align-center reinventPricePriceToPayMargin priceToPay")
+            productPrice = price_element.get_text(strip=True) if price_element else "Fiyat bilgisi yok"
 
-            if is_in_stock:
-                price_element = content.find(class_="a-price aok-align-center reinventPricePriceToPayMargin priceToPay")
-                productPrice = price_element.get_text(strip=True) if price_element else "Fiyat bilgisi yok"
+            originalPrice_element = content.find("span", class_="a-price a-text-price")
+            originalPrice = originalPrice_element.get_text(strip=True) if originalPrice_element else None
 
-                originalPrice_element = content.find("span", class_= "a-price a-text-price")
-                if originalPrice_element:
-                    offscreen_span = originalPrice_element.find("span", class_ = "a-offscreen")
-                    originalPrice = offscreen_span.get_text(strip=True) if offscreen_span else None
+            image_element = content.find("img", id="landingImage")
+            image_url = None
+            if image_element:
+                image_url = image_element.get("data-old-hires") or image_element.get("src")
 
             return jsonify({
                 "name": productName,
                 "price": str(productPrice),
                 "stock": str(is_in_stock),
-                "originalPrice": str(originalPrice)
+                "originalPrice": str(originalPrice),
+                "imageUrl": image_url
             })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
