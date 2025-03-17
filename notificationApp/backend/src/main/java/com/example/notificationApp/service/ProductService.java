@@ -4,6 +4,7 @@ import com.example.notificationApp.entity.Product;
 import com.example.notificationApp.entity.User;
 import com.example.notificationApp.model.ProductDTO;
 import com.example.notificationApp.repository.ProductRepository;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -60,6 +61,7 @@ public class ProductService {
     }
 
     //web scraping method for productList
+    @Scheduled(fixedRate = 10800000) //milisaniye 1000*60*60*3
     public List<Map<String, String>> getAllProductDetails(){
         List<Product> products = productRepository.findAll();
         RestTemplate restTemplate = new RestTemplate();
