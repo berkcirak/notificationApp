@@ -61,7 +61,7 @@ public class ProductService {
     }
 
     //web scraping method for productList
-    @Scheduled(fixedRate = 10800000) //milisaniye 1000*60*60*3
+    @Scheduled(fixedRate = 10800000) //milisaniye 1000*60*60*3 (a per 3 hours)
     public List<Map<String, String>> getAllProductDetails(){
         List<Product> products = productRepository.findAll();
         RestTemplate restTemplate = new RestTemplate();
@@ -85,7 +85,7 @@ public class ProductService {
                     String productName = response.get("name");
                     String productPrice = response.get("price");
                     String originalPrice = response.get("originalPrice");
-                    String productImage = response.get("image");
+                    String productImage = response.get("imageUrl");
                     LocalDateTime scrapedTime = LocalDateTime.now();
 
                     response.put("scrapedAt", scrapedTime.toString());
