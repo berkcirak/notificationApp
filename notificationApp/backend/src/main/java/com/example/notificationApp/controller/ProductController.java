@@ -1,11 +1,15 @@
 package com.example.notificationApp.controller;
 
 import com.example.notificationApp.entity.Product;
+import com.example.notificationApp.entity.User;
 import com.example.notificationApp.model.ProductDTO;
 import com.example.notificationApp.service.ProductService;
+import com.example.notificationApp.service.UserService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.swing.plaf.PanelUI;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,8 +18,10 @@ import java.util.Map;
 public class ProductController {
 
     private ProductService productService;
-    public ProductController(ProductService productService){
+    private UserService userService;
+    public ProductController(ProductService productService, UserService userService){
         this.productService=productService;
+        this.userService=userService;
     }
     @PostMapping("/add")
     public Product addProduct(@RequestBody Product product){
@@ -23,8 +29,19 @@ public class ProductController {
         try{
             Map<String, String> scrapedData = productService.scrapeProduct(savedProduct.getId());
             System.out.println("Scraping completed for new product: "+scrapedData);
+            List<Product> allProducts = productService.getAllProducts();
+            Map<String, Object> requestBody = new HashMap<>();
+            requestBody.put("newProduct", savedProduct);
+            requestBody.put("allProducts", allProducts);
+
+            String getProductsApiUrl = "http://127.0.0.1:5001/compute_similarity";
+            RestTemplate restTemplate = new RestTemplate();
+            List<Integer> recommendedProductIds = restTemplate.postForObject(getProductsApiUrl, requestBody, List.class);
+
+            productService.saveRecommendedProducts(savedProduct, recommendedProductIds);
+            System.out.println("Recommended products saved: "+recommendedProductIds);
         } catch (Exception e){
-            System.err.println("Scraping failed for new product: "+ e.getMessage());
+            System.err.println("Error in scraping or similarity analysis: "+ e.getMessage());
         }
         return savedProduct;
     }
@@ -50,5 +67,11 @@ public class ProductController {
     @GetMapping("/scrape/all")
     public List<Map<String, String>> scrapeAllProducts(){
         return productService.getAllProductDetails();
+    }
+    //python'a döndürecegimiz product list
+    @GetMapping("/allFromDB")
+    public List<Product> getAllProducts(){
+        User user = userService.getUserPrincipal();
+        return productService.getAllProducts();
     }
 }

@@ -1,11 +1,11 @@
 package com.example.notificationApp.service;
 
 import com.example.notificationApp.entity.Product;
+import com.example.notificationApp.entity.RecommendedProduct;
 import com.example.notificationApp.entity.User;
-import com.example.notificationApp.model.ProductDTO;
 import com.example.notificationApp.repository.ProductRepository;
+import com.example.notificationApp.repository.RecommendedProductRepository;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,9 +20,12 @@ public class ProductService {
 
     private ProductRepository productRepository;
     private UserService userService;
-    public ProductService(ProductRepository productRepository, UserService userService){
+    private RecommendedProductRepository recommendedProductRepository;
+
+    public ProductService(ProductRepository productRepository, UserService userService, RecommendedProductRepository recommendedProductRepository){
         this.productRepository=productRepository;
         this.userService=userService;
+        this.recommendedProductRepository=recommendedProductRepository;
     }
     public Product addProduct(Product product){
         User user = userService.getAuthenticatedUser();
@@ -58,6 +61,15 @@ public class ProductService {
             throw new RuntimeException("You are not authorized for delete this product");
         }
         productRepository.deleteById(product.getId());
+    }
+
+    public void saveRecommendedProducts(Product originalProduct, List<Integer> recommendedProductIds){
+        for (Integer recommendedId: recommendedProductIds){
+            Product recommendedProduct = productRepository.findById(recommendedId)
+                    .orElseThrow(()-> new RuntimeException("Product not found: "+ recommendedId));
+            RecommendedProduct recommendedProductEntry = new RecommendedProduct(originalProduct, recommendedProduct);
+            recommendedProductRepository.save(recommendedProductEntry);
+        }
     }
 
     //web scraping method for productList
@@ -151,5 +163,9 @@ public class ProductService {
             System.out.println("Error scraping product: "+productId);
             throw new RuntimeException("Scraping failed for product: "+ productId, e);
         }
+    }
+    //python tarafında matris icin döndürecegimiz product list
+    public List<Product> getAllProducts(){
+        return productRepository.findAll();
     }
 }
