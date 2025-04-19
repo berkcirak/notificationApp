@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -70,6 +71,16 @@ public class ProductService {
             RecommendedProduct recommendedProductEntry = new RecommendedProduct(originalProduct, recommendedProduct);
             recommendedProductRepository.save(recommendedProductEntry);
         }
+    }
+    public List<Product> getRecommendedProducts(int productId){
+        Product originalProduct = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        List<RecommendedProduct> recommendedProducts = recommendedProductRepository.findByOriginalProduct(originalProduct);
+
+        return recommendedProducts.stream()
+                .map(RecommendedProduct::getRecommendedProduct)
+                .collect(Collectors.toList());
     }
 
     //web scraping method for productList

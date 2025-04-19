@@ -74,4 +74,8 @@ public class ProductController {
         User user = userService.getUserPrincipal();
         return productService.getAllProducts();
     }
+    @GetMapping("/recommended/{productId}")
+    public List<Product> getRecommendedProducts(@PathVariable int productId){
+        return productService.getRecommendedProducts(productId);
+    }
 }

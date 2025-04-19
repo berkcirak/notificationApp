@@ -18,7 +18,7 @@ def compute_similarity():
     product_names = [p['productName'] for p in all_products]
 
     # TF-IDF vektörleştirme ile benzerlik matrisini oluştur
-    vectorizer = TfidfVectorizer(stop_words='turkish')
+    vectorizer = TfidfVectorizer(stop_words=None)
     tfidf_matrix = vectorizer.fit_transform(product_names)
 
     # Yeni eklenen ürünün vektörünü al
@@ -34,4 +34,4 @@ def compute_similarity():
     return jsonify(recommended_product_ids)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5001)
+    app.run(host="0.0.0.0", debug=True, port=5001)
