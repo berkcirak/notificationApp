@@ -1,23 +1,76 @@
-.homepage-container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    text-align: center;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .homepage-container h1 {
-    color: #333;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-  }
-  
-  .homepage-container p {
-    font-size: 1.2rem;
-    color: #555;
-    line-height: 1.6;
-    margin: 10px 0;
-  }
-  
+.product-container {
+  margin: 20px auto;
+  max-width: 900px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  gap: 20px;
+  justify-content: center;
+}
+
+li {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 700px;
+  margin: 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+strong{
+  margin:6px;
+  margin-bottom:14px;
+}
+.texts{
+  border:30px;
+  margin-top: 60px
+}
+.product-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.in-stock {
+  color: green;
+  font-weight: bold;
+}
+
+.out-of-stock {
+  color: red;
+  font-weight: bold;
+}/* Eğer ürün indirimsizse (sadece tek fiyat gösterilecekse) */
+.normal-price {
+  color: black;
+}
+
+/* 🔥 Eğer ürün indirimliyse (yeşil renkte göster) */
+.discounted-price {
+  color: green;
+  font-weight: bold;
+}
+
+/* 🔥 Eğer indirimli ürün varsa, eski fiyatı üstü çizili göster */
+.original-price {
+  text-decoration: line-through;
+  color: gray;
+  margin-right: 5px;
+}
+.product-image {
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  object-fit: contain;
+}

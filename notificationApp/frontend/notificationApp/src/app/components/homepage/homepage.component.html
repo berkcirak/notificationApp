@@ -1,15 +1,38 @@
-<div class="homepage-container">
-    <h1>Hoş Geldiniz!</h1>
-    <p>
-      NotificationApp'e hoş geldiniz. Bu uygulama, kullanıcıların kolayca ürünlerini
-      ekleyip yönetebildiği, güncelleyebildiği ve silebildiği bir platformdur.
-    </p>
-    <p>
-      Ürünlerinizi eklemek için "Ürün Ekle" sekmesine tıklayın, mevcut ürünlerinizi
-      görmek için "Ürünlerim" sekmesini kullanabilirsiniz.
-    </p>
-    <p>
-      Eğer bir profiliniz yoksa, hemen kaydolun ve uygulamamızı keşfetmeye başlayın!
-    </p>
-  </div>
-  
+<div class="product-container">
+  <h2>Beğenebileceğiniz Ürünler</h2>
+  <ul class="product-list">
+    <li *ngFor="let product of recommendedProducts" class="product-item" >
+      <div class="product-content">
+        
+          <img [src]="product.imageUrl" alt="Product Image" class="product-image" />
+        
+          <div class="texts">
+          <strong>Ürün:</strong> {{ product.productName }}<br>
+          
+          
+          <strong>Fiyat:</strong>
+          <span *ngIf="product.originalPrice !== 'None'" class="original-price"> 
+            {{ product.originalPrice }}
+          </span>
+          <span [ngClass]="{'discounted-price': product.originalPrice !== 'None', 'normal-price': product.originalPrice === 'None'}">
+            {{ product.productPrice }}
+          </span>
+           <br>
+          
+          
+          
+          <strong>Stok Durumu:</strong>
+          <span [ngClass]="{'in-stock': product.inStock === 'True', 'out-of-stock': product.inStock === 'False'}">
+            {{ product.inStock === 'True' ? 'Stokta var' : 'Stokta yok' }}
+          </span> <br>
+          <strong>Bağlantı:</strong> 
+          <a [attr.href]="product.link" target="_blank" rel="noopener noreferrer">
+            {{ product.link }}
+          </a>
+        
+        </div>
+        
+      </div>
+    </li>
+  </ul>
+</div>

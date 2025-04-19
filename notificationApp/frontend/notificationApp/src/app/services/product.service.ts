@@ -26,6 +26,12 @@ export class ProductService {
     });
     return this.http.get(this.productUrl+'/list', { headers })
   }
+  getRecommendedProducts(): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.get(this.productUrl+'/recommended', { headers })
+  }
 
   updateProduct(productId: number, product: any): Observable<any>{
     const headers = new HttpHeaders({
