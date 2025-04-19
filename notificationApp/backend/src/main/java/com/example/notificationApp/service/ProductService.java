@@ -73,16 +73,16 @@ public class ProductService {
         }
     }
     public List<Product> getRecommendedProducts(int productId){
+
         Product originalProduct = productRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
-
+        User user = userService.getAuthenticatedUser();
         List<RecommendedProduct> recommendedProducts = recommendedProductRepository.findByOriginalProduct(originalProduct);
 
         return recommendedProducts.stream()
                 .map(RecommendedProduct::getRecommendedProduct)
                 .collect(Collectors.toList());
     }
-
     //web scraping method for productList
     @Scheduled(fixedRate = 10800000) //milisaniye 1000*60*60*3 (a per 3 hours)
     public List<Map<String, String>> getAllProductDetails(){
@@ -178,5 +178,20 @@ public class ProductService {
     //python tarafında matris icin döndürecegimiz product list
     public List<Product> getAllProducts(){
         return productRepository.findAll();
+    }
+
+    public List<Product> getRecommendedProductsForUser() {
+        User currentUser = userService.getAuthenticatedUser();
+        List<Product> userProducts = productRepository.findAllByUserId(currentUser.getId());
+
+        List<Product> allRecommendedProducts = new ArrayList<>();
+        for (Product originalProduct : userProducts){
+            List<RecommendedProduct> recommendations = recommendedProductRepository.findByOriginalProduct(originalProduct);
+
+            for (RecommendedProduct rp : recommendations){
+                allRecommendedProducts.add(rp.getRecommendedProduct());
+            }
+        }
+        return allRecommendedProducts;
     }
 }

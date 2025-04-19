@@ -78,4 +78,10 @@ public class ProductController {
     public List<Product> getRecommendedProducts(@PathVariable int productId){
         return productService.getRecommendedProducts(productId);
     }
+    @GetMapping("/recommended")
+    public List<Product> getUserRecommendedProducts(){
+        return productService.getRecommendedProductsForUser();
+    }
+
+
 }
