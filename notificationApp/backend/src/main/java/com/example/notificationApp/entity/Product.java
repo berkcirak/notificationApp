@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "tbl_products")
@@ -28,6 +29,13 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JsonIgnore
     private User user;
+
+    @OneToMany(mappedBy = "originalProduct", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RecommendedProduct> recommendedAsOriginal;
+
+    @OneToMany(mappedBy = "recommendedProduct", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RecommendedProduct> recommendedAsRecommended;
+
 
     public Product(){
 

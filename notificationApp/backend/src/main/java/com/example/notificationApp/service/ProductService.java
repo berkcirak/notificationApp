@@ -10,10 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -184,12 +181,18 @@ public class ProductService {
         User currentUser = userService.getAuthenticatedUser();
         List<Product> userProducts = productRepository.findAllByUserId(currentUser.getId());
 
+        Set<Integer> addedProductIds = new HashSet<>();
         List<Product> allRecommendedProducts = new ArrayList<>();
+
         for (Product originalProduct : userProducts){
             List<RecommendedProduct> recommendations = recommendedProductRepository.findByOriginalProduct(originalProduct);
 
             for (RecommendedProduct rp : recommendations){
-                allRecommendedProducts.add(rp.getRecommendedProduct());
+                Product recommended = rp.getRecommendedProduct();
+                if (!addedProductIds.contains(recommended.getId())){
+                    allRecommendedProducts.add(recommended);
+                    addedProductIds.add(recommended.getId());
+                }
             }
         }
         return allRecommendedProducts;

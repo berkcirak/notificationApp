@@ -1,5 +1,6 @@
 package com.example.notificationApp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,11 +12,13 @@ public class RecommendedProduct {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "original_product_id")
+    @JoinColumn(name = "original_product_id", nullable = false)
+    @JsonIgnore
     private Product originalProduct;
 
     @ManyToOne
-    @JoinColumn(name = "recommended_product_id")
+    @JoinColumn(name = "recommended_product_id", nullable = false)
+    @JsonIgnore
     private Product recommendedProduct;
 
     public RecommendedProduct(){}
