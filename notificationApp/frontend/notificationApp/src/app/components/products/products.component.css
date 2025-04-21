@@ -4,7 +4,6 @@
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .product-container h2 {
@@ -71,57 +70,7 @@ strong{
     background-color:rgb(172, 31, 31);
 }
 
-.update-form {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
-.update-form h3 {
-    color: #333;
-}
-
-.update-form label {
-    display: block;
-    margin: 10px 0 5px;
-    color: #555;
-}
-
-.update-form input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 15px;
-}
-
-.update-form button {
-    padding: 10px 20px;
-    margin-right: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.update-form button[type="submit"] {
-    background-color: #28a745;
-    color: white;
-}
-
-.update-form button[type="submit"]:hover {
-    background-color: #218838;
-}
-
-.update-form button[type="button"] {
-    background-color: #6c757d;
-    color: white;
-}
-
-.update-form button[type="button"]:hover {
-    background-color: #5a6268;
-}
 .in-stock {
     color: green;
     font-weight: bold;
