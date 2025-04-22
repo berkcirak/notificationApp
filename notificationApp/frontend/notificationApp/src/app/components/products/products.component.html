@@ -2,13 +2,12 @@
     <h2>Ürünlerim</h2>
     <ul class="product-list">
       <li *ngFor="let product of products" class="product-item" >
-        <div class="product-content">
+        <div class="product-content" (click)="goToProduct(product.link)">
           
-            <img [src]="product.imageUrl" alt="Product Image" class="product-image" />
-          
+            <img [src]="product.imageUrl" alt="Product Image" class="product-image" />          
+            
             <div class="texts">
             <strong>Ürün:</strong> {{ product.productName }}<br>
-            
             
             <strong>Fiyat:</strong>
             <span *ngIf="product.originalPrice !== 'None'" class="original-price"> 
@@ -19,19 +18,14 @@
             </span>
              <br>
             
-            
-            
             <strong>Stok Durumu:</strong>
             <span [ngClass]="{'in-stock': product.inStock === 'True', 'out-of-stock': product.inStock === 'False'}">
               {{ product.inStock === 'True' ? 'Stokta var' : 'Stokta yok' }}
             </span> <br>
-            <strong>Bağlantı:</strong> 
-            <a [attr.href]="product.link" target="_blank" rel="noopener noreferrer">
-              {{ product.link }}
-            </a>
+         
           
           </div>
-          <div class="actions">
+          <div class="actions" (click)="$event.stopPropagation()">
             <button (click)="deleteProduct(product.id)">Delete</button>
           </div>
           

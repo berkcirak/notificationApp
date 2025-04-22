@@ -29,6 +29,9 @@ export class ProductsComponent {
       }
     });
   }
+  goToProduct(link: string){
+    window.open(link, '_blank');
+  }
   editProduct(product: any){
     this.selectedProduct = { ...product }
   }

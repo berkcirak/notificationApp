@@ -28,6 +28,10 @@ export class HomepageComponent {
     }
   });
 }
+goToProduct(link: string) {
+  window.open(link, '_blank'); // Yeni sekmede açar
+}
+
 
 
 

@@ -1,6 +1,6 @@
 .product-container {
   margin: 50px auto;
-  max-width: 900px;
+  max-width: 1500px;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 10px;
@@ -12,22 +12,25 @@
   color: #333;
   margin-bottom: 20px;
 }
-
 ul {
   list-style: none;
   padding: 0;
   gap: 20px;
+  display: flex;
   justify-content: center;
+  flex-wrap: wrap; /* wrap olarak değiştirildi */
 }
 
 li {
   background-color: #fff;
   border-radius: 10px;
   padding: 20px;
-  width: 700px;
-  margin: 40px;
+  width: 400px; /* genişliği biraz küçülttüm, çünkü 700px fazla taşırabilir */
+  margin: 20px; /* aralarındaki boşluk yeterli olur */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+
 strong{
   margin:6px;
   margin-bottom:14px;
@@ -40,6 +43,12 @@ strong{
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.product-content:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .in-stock {
