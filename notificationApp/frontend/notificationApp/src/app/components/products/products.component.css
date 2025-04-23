@@ -1,13 +1,15 @@
 .product-container {
     margin: 20px auto;
+    width: 100%;
     max-width: 900px;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: whitesmoke;
     border-radius: 10px;
 }
 
 .product-container h2 {
     text-align: center;
+    background-color: whitesmoke;
     color: #333;
     margin-bottom: 20px;
 }
@@ -15,15 +17,15 @@
 ul {
     list-style: none;
     padding: 0;
+    background-color: whitesmoke;
     gap: 20px;
-    justify-content: center;
 }
 
 li {
     background-color: rgba(192, 192, 192, 0.1);
     border-radius: 10px;
     padding: 20px;
-    width: 700px;
+    width:100%;
     margin: 40px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -65,7 +67,11 @@ strong{
 .actions button:first-child {
     background-color: rgb(146, 17, 17);
     color: white;
-}
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
 
 .actions button:first-child:hover {
     background-color: rgb(17, 146, 60);

@@ -8,15 +8,19 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg,rgb(126, 125, 125),rgb(207, 207, 207));
+    background: linear-gradient(135deg,rgb(233, 233, 233),rgb(212, 212, 212));
   }
   .form-container{
-    background: linear-gradient(135deg,rgb(100, 99, 99),rgb(42, 39, 48));
+    background: linear-gradient(135deg,rgb(177, 177, 177),rgb(104, 104, 104));
     padding: 20px 30px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
+  }
+  .form-container h2{
+    display: flex;
+    justify-content: center;
   }
   .login-form {
     display: flex;

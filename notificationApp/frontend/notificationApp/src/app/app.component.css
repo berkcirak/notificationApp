@@ -1,3 +1,8 @@
+html, body{
+  height: 100;
+  margin: 0;
+  padding: 0;
+}
 /* Ana kapsayıcı düzen */
 .main-container {
     display: flex;
@@ -9,6 +14,7 @@
   .top-navbar {
     height: 64px;
     min-height: 64px;
+    background-color: whitesmoke;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,7 +40,7 @@
   /* Sol navigasyon */
   .content-container {
     display: flex;
-    flex: 1
+    flex: 1;
   }
   .username {
     color: green;
@@ -42,7 +48,8 @@
   
   .side-navbar {
     width: 300px;
-    background: white;  
+    height: 100%;
+    background: whitesmoke;  
     padding-top: 200px;
     display:flex;
     flex-direction: column;
@@ -76,15 +83,18 @@
   }
   .gradient-divider {
     height: 100%;
-    width: 2px;
-    background: linear-gradient(to bottom,rgb(119, 25, 129),rgb(221, 41, 176)); /* Gradient renkleri */
+    width: 1px;
+    background: linear-gradient(to bottom,rgb(85, 81, 85),rgb(190, 186, 189)); /* Gradient renkleri */
     margin: 0 auto; /* Kenarlardan biraz boşluk bırak */
     border-radius: 2px; /* Kenarları yuvarlat */
   }
   
   .router-container {
     flex: 1;
-    max-height: 800px;
+    width: 100vh;
+    min-height: 100%;
     padding: 16px;
+    background-color: whitesmoke;
+    box-sizing: border-box;
   }
   

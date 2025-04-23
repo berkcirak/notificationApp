@@ -9,14 +9,15 @@
   
       <div class="right-section">
         <form class="login-form" (submit)="login()">
+          <h2>Giriş Yap</h2>
           <input
             type="text"
-            placeholder="username"
+            placeholder="Kullancı Adı"
             [(ngModel)]="username"
             name="username"
             required
           />
-          <input type="password" [(ngModel)]="password" name="password" placeholder="password" required />
+          <input type="password" [(ngModel)]="password" name="password" placeholder="Şifre" required />
           <button type="submit" class="login-button">Giriş Yap</button>
           <hr />
           <button class="create-account-button" (click)="goToRegister()">Yeni hesap oluştur</button>

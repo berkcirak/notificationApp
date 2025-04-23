@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: linear-gradient(135deg,rgb(126, 125, 125),rgb(207, 207, 207));
+    background: linear-gradient(135deg,rgb(233, 233, 233),rgb(212, 212, 212));
     color: #333;
 }
 
@@ -18,12 +18,12 @@
 .register-container h2 {
     margin-bottom: 20px;
     font-size: 2rem;
-    color: #ffffff;
+    color: black;
 }
 
 /* Form stili */
 form {
-    background: linear-gradient(135deg,rgb(100, 99, 99),rgb(42, 39, 48));
+    background: linear-gradient(135deg,rgb(177, 177, 177),rgb(104, 104, 104));
     padding: 20px 30px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
@@ -32,6 +32,10 @@ form {
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+form h2{
+    display: flex;
+    justify-content: center;
 }
 
 /* Etiket stili */
@@ -54,7 +58,30 @@ input[type="password"] {
     font-size: 1rem;
     transition: border-color 0.9s;
 }
-
+select {
+    width: 95%;
+    padding: 10px;
+    margin: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    appearance: none; /* varsayılan oku kaldır */
+    background: white url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,0 140,0 70,80' fill='%23999'/%3E%3C/svg%3E") no-repeat right 10px center;
+    background-size: 12px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .warning{
+    margin-left: 10px
+  }
+  
+  select:focus {
+    border-color: #6e8efb;
+    outline: none;
+    box-shadow: 0 0 4px rgba(110, 142, 251, 0.5);
+    background-color: #fefefe;
+    color: #333;
+  }
+  
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {

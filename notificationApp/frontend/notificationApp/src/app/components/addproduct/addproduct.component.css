@@ -1,11 +1,10 @@
 /* Genel sayfa düzeni */
 .container {
-    max-width: 600px;
-    margin: 50px auto;
+    margin: 20px auto;
+    max-width: 900px;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: whitesmoke;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   h2 {
@@ -80,21 +79,5 @@
     cursor: not-allowed;
   }
   
-  /* Duyarlı tasarım */
-  @media (max-width: 768px) {
-    .container {
-      margin: 20px;
-      padding: 15px;
-    }
   
-    h2 {
-      font-size: 24px;
-    }
-  
-    input,
-    textarea,
-    button {
-      font-size: 14px;
-    }
-  }
   
