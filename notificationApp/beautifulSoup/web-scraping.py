@@ -39,7 +39,7 @@ def scrape_product():
 
             breadcrumb_elements = content.select('.product-detail-breadcrumb-item[title]')
             categories = [elem.get("title").strip() for elem in breadcrumb_elements if elem.get("title")]
-            product_category = categories[-2] if categories else None
+            product_category = categories[-3] if categories else None
 
             for img in image_elements:
                 src =img.get("src")

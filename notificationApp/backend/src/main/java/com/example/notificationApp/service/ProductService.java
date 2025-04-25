@@ -110,7 +110,18 @@ public class ProductService {
                     String productPrice = response.get("price");
                     String originalPrice = response.get("originalPrice");
                     String productImage = response.get("imageUrl");
+                    String productCategoryName = response.get("productCategory");
                     LocalDateTime scrapedTime = LocalDateTime.now();
+
+                    if (productCategoryName != null && !productCategoryName.isEmpty()){
+                        Category category = categoryRepository.findByName(productCategoryName)
+                                .orElseGet(() -> {
+                                    Category newCategory = new Category();
+                                    newCategory.setName(productCategoryName);
+                                    return categoryRepository.save(newCategory);
+                                });
+                        product.setCategory(category);
+                    }
 
                     response.put("scrapedAt", scrapedTime.toString());
                     String inStock = response.get("stock");
