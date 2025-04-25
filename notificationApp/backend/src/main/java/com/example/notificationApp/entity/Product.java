@@ -23,6 +23,9 @@ public class Product {
     @Column(columnDefinition = "TEXT")
     private String imageUrl;
     private LocalDateTime scrapedAt;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     private String inStock = "true";
 
@@ -41,11 +44,18 @@ public class Product {
 
     }
 
-    public Product(String link, User user, String inStock, String imageUrl) {
+    public Product(String link, User user, String inStock, String imageUrl, Category category) {
         this.link = link;
         this.user = user;
         this.imageUrl = imageUrl;
+        this.category = category;
         this.inStock = inStock;
+    }
+    public void setCategory(Category category){
+        this.category = category;
+    }
+    public Integer getCategory(){
+        return category.getId();
     }
 
     public String getImageUrl() {

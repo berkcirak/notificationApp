@@ -1,8 +1,10 @@
 package com.example.notificationApp.service;
 
+import com.example.notificationApp.entity.Category;
 import com.example.notificationApp.entity.Product;
 import com.example.notificationApp.entity.RecommendedProduct;
 import com.example.notificationApp.entity.User;
+import com.example.notificationApp.repository.CategoryRepository;
 import com.example.notificationApp.repository.ProductRepository;
 import com.example.notificationApp.repository.RecommendedProductRepository;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -19,11 +21,13 @@ public class ProductService {
     private ProductRepository productRepository;
     private UserService userService;
     private RecommendedProductRepository recommendedProductRepository;
+    private CategoryRepository categoryRepository;
 
-    public ProductService(ProductRepository productRepository, UserService userService, RecommendedProductRepository recommendedProductRepository){
+    public ProductService(ProductRepository productRepository, UserService userService, RecommendedProductRepository recommendedProductRepository, CategoryRepository categoryRepository){
         this.productRepository=productRepository;
         this.userService=userService;
         this.recommendedProductRepository=recommendedProductRepository;
+        this.categoryRepository=categoryRepository;
     }
     public Product addProduct(Product product){
         User user = userService.getAuthenticatedUser();
@@ -152,6 +156,17 @@ public class ProductService {
                 String originalPrice = response.get("originalPrice");
                 String isInStock = response.get("stock");
                 String productImage = response.get("imageUrl");
+                String productCategoryName = response.get("productCategory");
+
+                if (productCategoryName != null && !productCategoryName.isEmpty()){
+                    Category category = categoryRepository.findByName(productCategoryName)
+                            .orElseGet(() -> {
+                                Category newCategory = new Category();
+                                newCategory.setName(productCategoryName);
+                                return categoryRepository.save(newCategory);
+                            });
+                    product.setCategory(category);
+                }
 
                 product.setImageUrl(productImage);
                 product.setProductName(productName);

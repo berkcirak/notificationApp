@@ -2,7 +2,6 @@ package com.example.notificationApp.controller;
 
 import com.example.notificationApp.entity.Product;
 import com.example.notificationApp.entity.User;
-import com.example.notificationApp.model.ProductDTO;
 import com.example.notificationApp.service.ProductService;
 import com.example.notificationApp.service.UserService;
 import org.springframework.web.bind.annotation.*;

@@ -37,6 +37,10 @@ def scrape_product():
             image_elements = content.find_all("img")
             image_url = None
 
+            breadcrumb_elements = content.select('.product-detail-breadcrumb-item[title]')
+            categories = [elem.get("title").strip() for elem in breadcrumb_elements if elem.get("title")]
+            product_category = categories[-2] if categories else None
+
             for img in image_elements:
                 src =img.get("src")
                 if src and "jpg" in src:
@@ -48,7 +52,8 @@ def scrape_product():
                 "price": str(productPrice),
                 "stock": str(is_in_stock),  # True = Stokta var, False = Stokta yok
                 "originalPrice": str(originalPrice),
-                "imageUrl": image_url
+                "imageUrl": image_url,
+                "productCategory": product_category
             })
         elif "amazon" in url:
             productName = content.find(id='productTitle')
