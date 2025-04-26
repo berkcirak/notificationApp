@@ -1,5 +1,6 @@
 package com.example.notificationApp.controller;
 
+import com.example.notificationApp.entity.Category;
 import com.example.notificationApp.entity.Product;
 import com.example.notificationApp.entity.User;
 import com.example.notificationApp.service.ProductService;
@@ -80,6 +81,9 @@ public class ProductController {
     public List<Product> getUserRecommendedProducts(){
         return productService.getRecommendedProductsForUser();
     }
-
+    @GetMapping("/commoncategory/{categoryName}")
+    public List<Product> getProductsByCommonCategory(@PathVariable String categoryName){
+        return productService.getProductsByCommonCategory(categoryName);
+    }
 
 }

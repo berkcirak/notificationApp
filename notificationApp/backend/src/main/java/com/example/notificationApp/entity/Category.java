@@ -1,5 +1,6 @@
 package com.example.notificationApp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category")
+    @JsonIgnore
     private List<Product> products;
 
     public Category(String name, List<Product> products) {
@@ -26,7 +28,7 @@ public class Category {
 
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

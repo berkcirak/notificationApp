@@ -223,4 +223,20 @@ public class ProductService {
         }
         return allRecommendedProducts;
     }
+
+    public List<Product> getProductsByCommonCategory(String commonCategoryName){
+        List<Category> allCategories = categoryRepository.findAll();
+
+        List<Integer> matchingCategoryIds = allCategories.stream()
+                .filter(category -> category.getName().toLowerCase().contains(commonCategoryName.toLowerCase()))
+                .map(Category::getId)
+                .collect(Collectors.toList());
+        if (matchingCategoryIds.isEmpty()){
+            return new ArrayList<>();
+        }
+        return productRepository.findAll().stream()
+                .filter(product -> matchingCategoryIds.contains(product.getCategory().getId()))
+                .collect(Collectors.toList());
+    }
+
 }

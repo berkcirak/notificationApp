@@ -73,12 +73,18 @@ def scrape_product():
             if image_element:
                 image_url = image_element.get("data-old-hires") or image_element.get("src")
 
+            breadcrumb_links = content.select('#wayfinding-breadcrumbs_feature_div ul li a')
+            categories = [link.get_text(strip=True) for link in breadcrumb_links if link.get_text(strip=True)]
+
+            product_category = categories[0] if categories else None
+
             return jsonify({
                 "name": productName,
                 "price": str(productPrice),
                 "stock": str(is_in_stock),
                 "originalPrice": str(originalPrice),
-                "imageUrl": image_url
+                "imageUrl": image_url,
+                "productCategory": product_category
             })
     except Exception as e:
         return jsonify({"error": str(e)}), 500

@@ -54,9 +54,10 @@ public class Product {
     public void setCategory(Category category){
         this.category = category;
     }
-    public Integer getCategory(){
-        return category.getId();
+    public Category getCategory(){
+        return category;
     }
+
 
     public String getImageUrl() {
         return imageUrl;
