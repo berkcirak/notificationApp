@@ -7,7 +7,6 @@ import com.example.notificationApp.service.UserService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import javax.swing.plaf.PanelUI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
