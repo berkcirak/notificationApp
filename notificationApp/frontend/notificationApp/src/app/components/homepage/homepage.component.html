@@ -1,7 +1,16 @@
+<div class="category-section">
+    <h2>Kategoriler</h2>
+    <ul class="category-list">
+      <li *ngFor="let category of categories" (click)="selectCategory(category)">
+        <h5 [class.active]="selectedCategory === category">{{ category }}</h5>
+      </li>
+    </ul>
+</div>
+
 <div class="product-container">
-  <h2>Beğenebileceğiniz Ürünler</h2>
+  <h2 *ngIf="selectedCategory">Beğenebileceğiniz Ürünler</h2>
   <ul class="product-list">
-    <li *ngFor="let product of recommendedProducts" class="product-item">
+    <li *ngFor="let product of filteredProducts" class="product-item">
       <div class="product-content" (click)="goToProduct(product.link)">
         <img [src]="product.imageUrl" alt="Product Image" class="product-image" />
     

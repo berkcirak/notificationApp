@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -32,12 +33,11 @@ export class ProductService {
     });
     return this.http.get(this.productUrl+'/recommended', { headers })
   }
-
-  updateProduct(productId: number, product: any): Observable<any>{
+  getProductsByCommonCategory(categoryName: string): Observable<Product[]>{
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
-    return this.http.put(`${this.productUrl}/update/${productId}`, product, { headers });
+    return this.http.get<Product[]>(this.productUrl+'/commoncategory', { headers });
   }
   deleteProduct(productId: number): Observable<any>{
     const headers = new HttpHeaders({

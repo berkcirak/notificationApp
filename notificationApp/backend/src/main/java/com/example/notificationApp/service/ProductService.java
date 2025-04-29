@@ -203,7 +203,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public List<Product> getRecommendedProductsForUser() {
+    public List<Product>  getRecommendedProductsForUser() {
         User currentUser = userService.getAuthenticatedUser();
         List<Product> userProducts = productRepository.findAllByUserId(currentUser.getId());
 
