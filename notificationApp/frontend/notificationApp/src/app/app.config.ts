@@ -2,7 +2,7 @@ import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } fr
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http'; // HttpClient sağlayıcısı eklendi
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-
+import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar'; // Toolbar için
 import { MatListModule } from '@angular/material/list'; // Mat-list-item için
 import { MatButtonModule } from '@angular/material/button'; // Butonlar için
@@ -16,6 +16,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(), // HttpClient sağlandı
     provideClientHydration(withEventReplay()),
     provideAnimationsAsync(),
-    importProvidersFrom(MatButtonModule, MatListModule, MatToolbarModule)
+    importProvidersFrom(MatButtonModule, MatListModule, MatMenuModule, MatToolbarModule)
   ]
 };

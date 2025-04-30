@@ -1,6 +1,6 @@
 <div class="main-container">
   <mat-toolbar *ngIf="!isAuthRoute" color="primary" class="top-navbar">
-    <span class="app-title">NotificationApp</span>
+    <span class="app-title" (click)="goToHomepage()" style="cursor: pointer">NotificationApp</span>
     <span class="spacer"></span>
     <div class="user-section">
       <button mat-button *ngIf="userProfile" (click)="goToProfile()" >

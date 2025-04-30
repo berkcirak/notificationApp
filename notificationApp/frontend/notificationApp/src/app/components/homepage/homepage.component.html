@@ -1,14 +1,25 @@
-<div class="category-section">
-    <h2>Kategoriler</h2>
-    <ul class="category-list">
-      <li *ngFor="let category of categories" (click)="selectCategory(category)">
-        <h5 [class.active]="selectedCategory === category">{{ category }}</h5>
-      </li>
-    </ul>
-</div>
+<mat-nav-list class="main-category-bar">
+  <div class="main-category-wrapper"
+       *ngFor="let mainCat of mainCategories"
+       (mouseenter)="hoveredCategory = mainCat.key"
+       (mouseleave)="hoveredCategory = null">
+    
+    <a mat-list-item class="main-category-item">
+      {{ mainCat.name }}
+    </a>
+
+    <mat-nav-list *ngIf="hoveredCategory === mainCat.key" class="sub-category-list">
+      <a mat-list-item *ngFor="let sub of mainCat.values" (click)="selectCategory(sub)">
+        {{ sub }}
+      </a>
+    </mat-nav-list>
+
+  </div>
+</mat-nav-list>
+
 
 <div class="product-container">
-  <h2 *ngIf="selectedCategory">Beğenebileceğiniz Ürünler</h2>
+  <h2 *ngIf="selectedCategory">Kategori: {{ selectedCategory }}</h2>
   <ul class="product-list">
     <li *ngFor="let product of filteredProducts" class="product-item">
       <div class="product-content" (click)="goToProduct(product.link)">

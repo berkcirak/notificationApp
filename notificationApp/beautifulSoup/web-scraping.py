@@ -62,11 +62,28 @@ def scrape_product():
             out_of_stock_element = content.find(id="outOfStock")
             is_in_stock = not bool(out_of_stock_element)
 
-            price_element = content.find(class_="a-price aok-align-center reinventPricePriceToPayMargin priceToPay")
-            productPrice = price_element.get_text(strip=True) if price_element else "Fiyat bilgisi yok"
+            # ✔ GÜNCEL FİYAT → productPrice
+            price_whole = content.select_one("div.a-section.a-spacing-none.aok-align-center.aok-relative span.a-price-whole")
+            price_decimal = content.select_one("span.a-price-decimal")
 
-            originalPrice_element = content.find("span", class_="a-price a-text-price")
-            originalPrice = originalPrice_element.get_text(strip=True) if originalPrice_element else None
+            if price_whole:
+                # Fiyatın tam kısmını al, noktadan sonra küsurat ekleme
+                productPrice = price_whole.get_text(strip=True).replace(",", "").strip() + " TL"
+            else:
+                productPrice = None
+
+            import re
+
+            original_price_span = content.select_one(
+                "div.a-section.a-spacing-small.aok-align-center span.aok-offscreen"
+            )
+
+            if original_price_span:
+                raw_text = original_price_span.get_text(strip=True)
+                match = re.search(r"\d{1,3}(?:\.\d{3})*", raw_text)  # ✔ SADECE 44.829 gibi değerler için
+                originalPrice = match.group(0) + " TL" if match else None
+            else:
+                originalPrice = None
 
             image_element = content.find("img", id="landingImage")
             image_url = None
@@ -76,7 +93,7 @@ def scrape_product():
             breadcrumb_links = content.select('#wayfinding-breadcrumbs_feature_div ul li a')
             categories = [link.get_text(strip=True) for link in breadcrumb_links if link.get_text(strip=True)]
 
-            product_category = categories[0] if categories else None
+            product_category = categories[-1] if categories else None
 
             return jsonify({
                 "name": productName,

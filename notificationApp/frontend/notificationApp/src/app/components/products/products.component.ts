@@ -32,12 +32,7 @@ export class ProductsComponent {
   goToProduct(link: string){
     window.open(link, '_blank');
   }
-  editProduct(product: any){
-    this.selectedProduct = { ...product }
-  }
-  cancelEdit(){
-    this.selectedProduct = null;
-  }
+
   deleteProduct(productId: number){
     if(confirm('Bu ürünü silmek istediğinize emi misiniz?')){
       this.productService.deleteProduct(productId).subscribe({

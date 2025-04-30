@@ -43,6 +43,10 @@ export class AppComponent {
         currentRoute.includes('/welcome');
     });
   }
+  goToHomepage(): void{
+    this.router.navigate(['/homepage']);
+    window.location.reload();
+  }
 
   loadUserProfile(): void {
     if (isPlatformBrowser(this.platformId)) {
