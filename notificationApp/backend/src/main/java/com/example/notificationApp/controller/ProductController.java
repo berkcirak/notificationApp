@@ -5,6 +5,7 @@ import com.example.notificationApp.entity.Product;
 import com.example.notificationApp.entity.User;
 import com.example.notificationApp.service.ProductService;
 import com.example.notificationApp.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -81,9 +82,13 @@ public class ProductController {
     public List<Product> getUserRecommendedProducts(){
         return productService.getRecommendedProductsForUser();
     }
+    /*
     @GetMapping("/commoncategory/{categoryName}")
     public List<Product> getProductsByCommonCategory(@PathVariable String categoryName){
         return productService.getProductsByCommonCategory(categoryName);
+    }*/
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> searchProducts(@RequestParam String query){
+        return ResponseEntity.ok(productService.searchProductByName(query));
     }
-
 }

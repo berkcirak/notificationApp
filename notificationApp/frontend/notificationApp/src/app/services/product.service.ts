@@ -45,5 +45,11 @@ export class ProductService {
     });
     return this.http.delete(`${this.productUrl}/delete/${productId}`,{ headers });
   }
+  searchProducts(query: string): Observable<Product[]>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.get<Product[]>(this.productUrl+'/search?query=${query}', { headers });
+  }
 
 }

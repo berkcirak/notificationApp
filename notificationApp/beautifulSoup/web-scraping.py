@@ -63,12 +63,15 @@ def scrape_product():
             is_in_stock = not bool(out_of_stock_element)
 
             # ✔ GÜNCEL FİYAT → productPrice
-            price_whole = content.select_one("div.a-section.a-spacing-none.aok-align-center.aok-relative span.a-price-whole")
-            price_decimal = content.select_one("span.a-price-decimal")
+            price_whole = content.select_one("span.a-price-whole")
+            price_fraction = content.select_one("span.a-price-fraction")  # Bazı ürünlerde küsurat kısmı burada
+            # Alternatif olarak:
+            # price_fraction = content.select_one("span.a-price-decimal + span")
 
             if price_whole:
-                # Fiyatın tam kısmını al, noktadan sonra küsurat ekleme
-                productPrice = price_whole.get_text(strip=True).replace(",", "").strip() + " TL"
+                whole = price_whole.get_text(strip=True).replace(",", "")
+                fraction = price_fraction.get_text(strip=True) if price_fraction else "00"
+                productPrice = f"{whole}.{fraction} TL"
             else:
                 productPrice = None
 

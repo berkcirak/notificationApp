@@ -37,11 +37,11 @@ public class JWTService {
                 .claims()
                 .add(claims)
                 .subject(username)
-                .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 60 * 60 * 900))
+                .issuedAt(new Date(System.currentTimeMillis())) //at created token
+                .expiration(new Date(System.currentTimeMillis() + 60 * 60 * 900)) //expiration time
                 .and()
-                .signWith(getKey())
-                .compact();
+                .signWith(getKey()) // signature
+                .compact(); //token, convert to string
     }
     private SecretKey getKey(){
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);

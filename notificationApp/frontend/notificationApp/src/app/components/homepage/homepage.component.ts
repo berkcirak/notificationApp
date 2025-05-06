@@ -20,6 +20,7 @@ export class HomepageComponent {
   selectedCategory: string | null = null;
   filteredProducts: any[] = [];
   hoveredCategory: string | null = null;
+  searchQuery: string = '';
 
 
   mainCategories = [
@@ -64,7 +65,19 @@ export class HomepageComponent {
   ngOnInit(){
     this.loadRecommendedProducts();
   }
-
+  onSearch(): void {
+    const query = this.searchQuery.trim().toLowerCase();
+  
+    if (query === '') {
+      this.filteredProducts = this.recommendedProducts;
+    } else {
+      this.filteredProducts = this.recommendedProducts.filter(product =>
+        product.productName?.toLowerCase().includes(query) ||
+        product.category?.name?.toLowerCase().includes(query)
+      );
+    }
+  }
+  
   
   loadRecommendedProducts(){
     this.productService.getRecommendedProducts().subscribe({

@@ -55,7 +55,7 @@ export class Categories{
         'Ayna',
         'Koltuk',
         'Tava',
-        'Tabağı',
+        'Tabak',
         'Çatal',
         'Kaşık',
         'Yastık',
@@ -63,4 +63,8 @@ export class Categories{
         'Yemek Takımı',
         'Yorgan', 
     ];
+
+    
+
+
 }
