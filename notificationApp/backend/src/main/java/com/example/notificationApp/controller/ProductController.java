@@ -91,4 +91,8 @@ public class ProductController {
     public ResponseEntity<List<Product>> searchProducts(@RequestParam String query){
         return ResponseEntity.ok(productService.searchProductByName(query));
     }
+    @GetMapping("/by-category")
+    public List<Product> getProductsByCategory(@RequestParam String category){
+        return productService.getProductsByCategory(category);
+    }
 }

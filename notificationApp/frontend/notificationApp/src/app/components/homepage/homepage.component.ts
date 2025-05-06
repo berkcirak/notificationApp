@@ -1,6 +1,6 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import { response } from 'express';
+import { query, response } from 'express';
 import { error } from 'console';
 import { CommonModule } from '@angular/common';
 import { Categories } from '../../datas/categories';
@@ -33,7 +33,14 @@ export class HomepageComponent {
 
   selectCategory(category: string){
     this.selectedCategory = category;
-    this.filterProducts();
+    this.productService.searchProductsByCategory(category).subscribe({
+      next: (response) => {
+        this.filteredProducts = response;
+      },
+      error: (err) => {
+        console.error("Kategoriye göre ürünler alınamadı: ",err);
+      }
+    });
   }
   filterProducts(){
     this.filteredProducts = this.recommendedProducts.filter(product => {
@@ -67,15 +74,17 @@ export class HomepageComponent {
   }
   onSearch(): void {
     const query = this.searchQuery.trim().toLowerCase();
-  
-    if (query === '') {
+
+    if(query === ''){
       this.filteredProducts = this.recommendedProducts;
-    } else {
-      this.filteredProducts = this.recommendedProducts.filter(product =>
+    }else{
+      this.filteredProducts = this.recommendedProducts.filter(product => 
         product.productName?.toLowerCase().includes(query) ||
         product.category?.name?.toLowerCase().includes(query)
       );
     }
+
+
   }
   
   

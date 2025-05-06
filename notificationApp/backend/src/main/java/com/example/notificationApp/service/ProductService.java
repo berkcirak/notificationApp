@@ -243,5 +243,12 @@ public class ProductService {
                 .filter(product -> product.getProductName() != null && product.getProductName().toLowerCase().contains(query.toLowerCase()))
                 .collect(Collectors.toList());
     }
+    public List<Product> getProductsByCategory(String categoryName){
+        return productRepository.findAll().stream()
+                .filter(p -> p.getCategory() != null &&
+                        p.getCategory().getName() != null &&
+                        p.getCategory().getName().equalsIgnoreCase(categoryName))
+                .collect(Collectors.toList());
+    }
 
 }

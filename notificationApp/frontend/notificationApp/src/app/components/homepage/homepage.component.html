@@ -5,9 +5,6 @@
   </form>
 </div>
 
-
-
-
 <mat-nav-list class="main-category-bar">
   <div class="main-category-wrapper"
        *ngFor="let mainCat of mainCategories"
@@ -19,7 +16,7 @@
     </a>
 
     <mat-nav-list *ngIf="hoveredCategory === mainCat.key" class="sub-category-list">
-      <a mat-list-item *ngFor="let sub of mainCat.values" (click)="selectCategory(sub)">
+      <a mat-list-item type="button" *ngFor="let sub of mainCat.values" (click)="selectCategory(sub)">
         {{ sub }}
       </a>
     </mat-nav-list>
