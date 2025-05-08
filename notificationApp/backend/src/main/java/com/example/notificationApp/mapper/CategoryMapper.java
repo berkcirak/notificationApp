@@ -9,7 +9,7 @@ public class CategoryMapper {
         String lowerName = productCategory.toLowerCase(Locale.ROOT);
 
         // Fashion
-        if (lowerName.contains("ayakkabı")) return "Ayakkabı";
+        if ((lowerName.contains("ayakkabı")) || lowerName.contains("sneaker")) return "Ayakkabı";
         if (lowerName.contains("tişört")) return "Tişört";
         if (lowerName.contains("t-shirt")) return "Tişört";
         if (lowerName.contains("mont")) return "Mont";
