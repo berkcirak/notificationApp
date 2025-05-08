@@ -1,12 +1,11 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import { query, response } from 'express';
-import { error } from 'console';
 import { CommonModule } from '@angular/common';
 import { Categories } from '../../datas/categories';
 import { FormsModule } from '@angular/forms';
 import { MatListItem } from '@angular/material/list';
 import { MatNavList } from '@angular/material/list';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
   selector: 'app-homepage',
@@ -21,16 +20,42 @@ export class HomepageComponent {
   filteredProducts: any[] = [];
   hoveredCategory: string | null = null;
   searchQuery: string = '';
+  mainCategories: any[] = [];
 
 
-  mainCategories = [
-    { key: 'electronicsCategory', name: 'Elektronik', values: Categories.electronicsCategory.sort() },
-    { key: 'fashionCategory', name: 'Moda', values: Categories.fashionCategory.sort() },
-    { key: 'cosmeticsCategory', name: 'Kozmetik', values: Categories.cosmeticsCategory.sort() },
-    { key: 'hobbyCategory', name: 'Hobi', values: Categories.hobbyCategory.sort() },
-    { key: 'houseHoldCategory', name: 'Ev', values: Categories.householdCategory.sort() },
-  ]
+loadCategories(): void {
+  this.categoryService.getCategories().subscribe({
+    next: (allCategories) => {
+      const grouped: any[] = [];
 
+      const groupMap = [
+        { key: 'fashionCategory', name: 'Moda', keywords: Categories.fashionCategory },
+        { key: 'electronicsCategory', name: 'Elektronik', keywords: Categories.electronicsCategory },
+        { key: 'cosmeticsCategory', name: 'Kozmetik', keywords: Categories.cosmeticsCategory },
+        { key: 'hobbyCategory', name: 'Hobi', keywords: Categories.hobbyCategory },
+        { key: 'householdCategory', name: 'Ev', keywords: Categories.householdCategory },
+      ];
+
+      for (const group of groupMap) {
+        const subcategories = allCategories
+          .filter(cat => group.keywords.includes(cat.name))
+          .map(cat => cat.name)
+          .sort();
+
+        if (subcategories.length > 0) {
+          grouped.push({
+            key: group.key,
+            name: group.name,
+            values: subcategories
+          });
+        }
+      }
+
+      this.mainCategories = grouped;
+    },
+    error: (err) => console.error('Kategoriler alınamadı:', err)
+  });
+}
   selectCategory(category: string){
     this.selectedCategory = category;
     this.productService.searchProductsByCategory(category).subscribe({
@@ -50,27 +75,12 @@ export class HomepageComponent {
     })
   }
   
-  constructor(private productService: ProductService){}
-//mapleme var mı? gereksiz mi? kontrol edilecek?
- /* mapCategory(product: any): string{
-    const name = (product.productName || '').toLowerCase();
-    const category = (product.category.name || '').toLowerCase();
-
-    if(name.includes('telefon') || category.name.includes('telefon')) return 'Telefon';
-    if(name.includes('kulaklık') || category.name.includes('kulaklık')) return 'kulaklık';
-    if(name.includes('laptop') || category.name.includes('laptop')) return 'Laptop';
-    if(name.includes('parfüm') || category.name.includes('parfüm')) return 'Parfüm';
-    if(name.includes('ayakkabı') || category.name.includes('ayakkabı')) return 'Ayakkabı';
-    if(name.includes('çanta') || category.name.includes('çanta')) return 'Çanta';
-    if(name.includes('oyuncak') || category.name.includes('oyuncak')) return 'Oyuncak';
-    if(name.includes('giyim') || category.name.includes('giyim')) return 'Giyim';
-    if(name.includes('akıllı saat') || category.name.includes('akıllı saat')) return 'Akıllı Saat';
-
-    return 'Diğer Göz Atabileceğiniz Ürünler';
-  }
-*/
+  constructor(private productService: ProductService,
+              private categoryService: CategoryService
+  ){}
   ngOnInit(){
     this.loadRecommendedProducts();
+    this.loadCategories();
   }
   onSearch(): void {
     const query = this.searchQuery.trim().toLowerCase();

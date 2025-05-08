@@ -4,6 +4,7 @@ import com.example.notificationApp.entity.Category;
 import com.example.notificationApp.entity.Product;
 import com.example.notificationApp.entity.RecommendedProduct;
 import com.example.notificationApp.entity.User;
+import com.example.notificationApp.mapper.CategoryMapper;
 import com.example.notificationApp.repository.CategoryRepository;
 import com.example.notificationApp.repository.ProductRepository;
 import com.example.notificationApp.repository.RecommendedProductRepository;
@@ -111,9 +112,17 @@ public class ProductService {
                     String originalPrice = response.get("originalPrice");
                     String productImage = response.get("imageUrl");
                     String productCategoryName = response.get("productCategory");
+                    String mappedCategoryName = CategoryMapper.mapCategoryByName(productCategoryName);
+                    Category category = categoryRepository.findByName(mappedCategoryName)
+                            .orElseGet(()->{
+                                Category newCategory = new Category();
+                                newCategory.setName(mappedCategoryName);
+                                return categoryRepository.save(newCategory);
+                            });
+                    product.setCategory(category);
                     LocalDateTime scrapedTime = LocalDateTime.now();
 
-                    if (productCategoryName != null && !productCategoryName.isEmpty()){
+               /*     if (productCategoryName != null && !productCategoryName.isEmpty()){
                         Category category = categoryRepository.findByName(productCategoryName)
                                 .orElseGet(() -> {
                                     Category newCategory = new Category();
@@ -121,7 +130,7 @@ public class ProductService {
                                     return categoryRepository.save(newCategory);
                                 });
                         product.setCategory(category);
-                    }
+                    } */
 
                     response.put("scrapedAt", scrapedTime.toString());
                     String inStock = response.get("stock");
@@ -168,8 +177,16 @@ public class ProductService {
                 String isInStock = response.get("stock");
                 String productImage = response.get("imageUrl");
                 String productCategoryName = response.get("productCategory");
+                String mappedCategoryName = CategoryMapper.mapCategoryByName(productCategoryName);
+                Category category = categoryRepository.findByName(mappedCategoryName)
+                        .orElseGet(()->{
+                            Category newCategory = new Category();
+                            newCategory.setName(mappedCategoryName);
+                            return categoryRepository.save(newCategory);
+                        });
+                product.setCategory(category);
 
-                if (productCategoryName != null && !productCategoryName.isEmpty()){
+              /*  if (productCategoryName != null && !productCategoryName.isEmpty()){
                     Category category = categoryRepository.findByName(productCategoryName)
                             .orElseGet(() -> {
                                 Category newCategory = new Category();
@@ -178,7 +195,7 @@ public class ProductService {
                             });
                     product.setCategory(category);
                 }
-
+*/
                 product.setImageUrl(productImage);
                 product.setProductName(productName);
                 product.setProductPrice(productPrice);
