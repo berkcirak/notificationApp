@@ -47,6 +47,7 @@ public class CategoryMapper {
         if (lowerName.contains("kitap")) return "Kitap";
         if (lowerName.contains("kaykay")) return "Kaykay";
         if (lowerName.contains("paten")) return "Paten";
+        if (lowerName.contains("gitar")) return "Gitar";
 
         // Cosmetics
         if (lowerName.contains("parfüm")) return "Parfüm";

@@ -10,7 +10,7 @@ export class Categories{
     ];
     static hobbyCategory: string[] = [
         'Drone', 'Bisiklet', 'Scooter', 'Top', 'Raket',
-    'Pota', 'Kitap', 'Kaykay', 'Paten'
+    'Pota', 'Kitap', 'Kaykay', 'Paten', 'Gitar'
     ];
     static cosmeticsCategory: string[] = [
         'Parfüm', 'Makyaj', 'Rimel', 'Duş Jeli', 'Şampuan',
