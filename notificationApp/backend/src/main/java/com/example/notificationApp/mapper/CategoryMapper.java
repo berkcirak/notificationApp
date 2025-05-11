@@ -28,14 +28,14 @@ public class CategoryMapper {
         if (lowerName.contains("tablet")) return "Tablet";
         if (lowerName.contains("kulaklık")) return "Kulaklık";
         if (lowerName.contains("saat")) return "Akıllı Saat";
-        if (lowerName.contains("kamera")) return "Kamera";
+        if ((lowerName.contains("kamera"))||lowerName.contains("fotoğraf")||lowerName.contains("video")) return "Kamera";
         if (lowerName.contains("televizyon")) return "Televizyon";
         if (lowerName.contains("hoparlör")) return "Hoparlör";
         if (lowerName.contains("buzdolabı")) return "Buzdolabı";
         if (lowerName.contains("çamaşır")) return "Çamaşır Makinesi";
         if (lowerName.contains("bulaşık")) return "Bulaşık Makinesi";
         if (lowerName.contains("ütü")) return "Ütü";
-        if (lowerName.contains("konsol")) return "Oyun Konsolu";
+        if ((lowerName.contains("konsol"))||lowerName.contains("playstation")||lowerName.contains("xbox")||lowerName.contains("nintendo")) return "Oyun Konsolu";
 
         // Hobby
         if (lowerName.contains("drone")) return "Drone";
@@ -61,7 +61,7 @@ public class CategoryMapper {
         if (lowerName.contains("diş macunu")) return "Diş Macunu";
         if (lowerName.contains("diş fırçası")) return "Diş Fırçası";
         if (lowerName.contains("ağda")) return "Ağda";
-
+        if (lowerName.contains("ruj")) return "Ruj";
         // Household
         if (lowerName.contains("ayna")) return "Ayna";
         if (lowerName.contains("koltuk")) return "Koltuk";

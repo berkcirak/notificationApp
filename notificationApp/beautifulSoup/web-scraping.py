@@ -41,6 +41,21 @@ def scrape_product():
             categories = [elem.get("title").strip() for elem in breadcrumb_elements if elem.get("title")]
             product_category = categories[-3] if categories else None
 
+            description = ""
+            desc_list = content.select(".detail-desc-list li")
+            desc_started = False
+
+            description_items = []
+            for li in desc_list:
+                li_text = li.get_text(strip=True)
+                if "İade ve Değişim Koşulları" in li_text or "return-info" in li.get("class", []):
+                    desc_started = True
+                    continue
+                if desc_started:
+                    description_items.append(li_text)
+
+            description = "\n".join(description_items) if description_items  else None
+
             for img in image_elements:
                 src =img.get("src")
                 if src and "jpg" in src:
@@ -53,7 +68,8 @@ def scrape_product():
                 "stock": str(is_in_stock),  # True = Stokta var, False = Stokta yok
                 "originalPrice": str(originalPrice),
                 "imageUrl": image_url,
-                "productCategory": product_category
+                "productCategory": product_category,
+                "description": description
             })
         elif "amazon" in url:
             productName = content.find(id='productTitle')
@@ -98,13 +114,21 @@ def scrape_product():
 
             product_category = categories[-1] if categories else None
 
+            #description
+            description = ""
+            desc_list = content.select("ul.a-unordered-list.a-vertical.a-spacing-small > li span.a-list-item")
+            description_items = [li.get_text(strip=True) for li in desc_list if li.get_text(strip=True)]
+
+            description = "\n".join(description_items) if description_items else None
+
             return jsonify({
                 "name": productName,
                 "price": str(productPrice),
                 "stock": str(is_in_stock),
                 "originalPrice": str(originalPrice),
                 "imageUrl": image_url,
-                "productCategory": product_category
+                "productCategory": product_category,
+                "description": description
             })
     except Exception as e:
         return jsonify({"error": str(e)}), 500

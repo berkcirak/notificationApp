@@ -13,7 +13,7 @@ export class Categories{
     'Pota', 'Kitap', 'Kaykay', 'Paten', 'Gitar'
     ];
     static cosmeticsCategory: string[] = [
-        'Parfüm', 'Makyaj', 'Rimel', 'Duş Jeli', 'Şampuan',
+        'Parfüm', 'Makyaj', 'Rimel', 'Duş Jeli', 'Şampuan', 'Ruj',
     'Deodorant', 'Nemlendirici', 'Krem', 'Diş Macunu', 'Diş Fırçası', 'Ağda'
     ];
     static householdCategory: string[] = [

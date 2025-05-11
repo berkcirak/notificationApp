@@ -26,6 +26,8 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+    @Lob
+    private String description;
 
     private String inStock = "true";
 
@@ -44,12 +46,13 @@ public class Product {
 
     }
 
-    public Product(String link, User user, String inStock, String imageUrl, Category category) {
+    public Product(String link, User user, String inStock, String imageUrl, Category category, String description) {
         this.link = link;
         this.user = user;
         this.imageUrl = imageUrl;
         this.category = category;
         this.inStock = inStock;
+        this.description = description;
     }
     public void setCategory(Category category){
         this.category = category;
@@ -58,6 +61,13 @@ public class Product {
         return category;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getImageUrl() {
         return imageUrl;

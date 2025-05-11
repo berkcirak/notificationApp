@@ -111,6 +111,7 @@ public class ProductService {
                     String productPrice = response.get("price");
                     String originalPrice = response.get("originalPrice");
                     String productImage = response.get("imageUrl");
+                    String productDescription = response.get("description");
                     String productCategoryName = response.get("productCategory");
                     String mappedCategoryName = CategoryMapper.mapCategoryByName(productCategoryName);
                     Category category = categoryRepository.findByName(mappedCategoryName)
@@ -122,19 +123,10 @@ public class ProductService {
                     product.setCategory(category);
                     LocalDateTime scrapedTime = LocalDateTime.now();
 
-               /*     if (productCategoryName != null && !productCategoryName.isEmpty()){
-                        Category category = categoryRepository.findByName(productCategoryName)
-                                .orElseGet(() -> {
-                                    Category newCategory = new Category();
-                                    newCategory.setName(productCategoryName);
-                                    return categoryRepository.save(newCategory);
-                                });
-                        product.setCategory(category);
-                    } */
 
                     response.put("scrapedAt", scrapedTime.toString());
                     String inStock = response.get("stock");
-
+                    product.setDescription(productDescription);
                     product.setImageUrl(productImage);
                     product.setProductName(productName);
                     product.setProductPrice(productPrice);
@@ -176,6 +168,7 @@ public class ProductService {
                 String originalPrice = response.get("originalPrice");
                 String isInStock = response.get("stock");
                 String productImage = response.get("imageUrl");
+                String productDescription = response.get("description");
                 String productCategoryName = response.get("productCategory");
                 String mappedCategoryName = CategoryMapper.mapCategoryByName(productCategoryName);
                 Category category = categoryRepository.findByName(mappedCategoryName)
@@ -186,16 +179,7 @@ public class ProductService {
                         });
                 product.setCategory(category);
 
-              /*  if (productCategoryName != null && !productCategoryName.isEmpty()){
-                    Category category = categoryRepository.findByName(productCategoryName)
-                            .orElseGet(() -> {
-                                Category newCategory = new Category();
-                                newCategory.setName(productCategoryName);
-                                return categoryRepository.save(newCategory);
-                            });
-                    product.setCategory(category);
-                }
-*/
+                product.setDescription(productDescription);
                 product.setImageUrl(productImage);
                 product.setProductName(productName);
                 product.setProductPrice(productPrice);
