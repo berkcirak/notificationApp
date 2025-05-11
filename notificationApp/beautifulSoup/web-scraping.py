@@ -31,8 +31,8 @@ def scrape_product():
             productPrice_element = content.find("span", class_="prc-dsc")
             originalPrice_element = content.find("span", class_="prc-org")
 
-            productPrice = productPrice_element.get_text(strip=True) if productPrice_element else None
-            originalPrice = originalPrice_element.get_text(strip=True) if originalPrice_element else None
+            productPrice = productPrice_element.get_text(strip=True) if productPrice_element else "Fiyat bilgisi yok"
+            originalPrice = originalPrice_element.get_text(strip=True) if originalPrice_element else "Fiyat bilgisi yok"
 
             image_elements = content.find_all("img")
             image_url = None
@@ -89,7 +89,7 @@ def scrape_product():
                 fraction = price_fraction.get_text(strip=True) if price_fraction else "00"
                 productPrice = f"{whole}.{fraction} TL"
             else:
-                productPrice = None
+                productPrice = "Fiyat bilgisi yok"
 
             import re
 
@@ -115,8 +115,10 @@ def scrape_product():
             product_category = categories[-1] if categories else None
 
             #description
+            # Açıklama bilgilerini çek (Amazon için)
             description = ""
-            desc_list = content.select("ul.a-unordered-list.a-vertical.a-spacing-small > li span.a-list-item")
+            desc_list = content.select(
+                "ul.a-unordered-list.a-vertical.a-spacing-mini li.a-spacing-mini > span.a-list-item")
             description_items = [li.get_text(strip=True) for li in desc_list if li.get_text(strip=True)]
 
             description = "\n".join(description_items) if description_items else None
