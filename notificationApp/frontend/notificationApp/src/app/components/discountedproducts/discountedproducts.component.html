@@ -1,0 +1,28 @@
+<div class="discounted-products">
+  <h2>İndirimli Ürünler</h2>
+  <div *ngIf="discountedProducts.length === 0">İndirimli ürün bulunamadı.</div>
+  <ul *ngIf="discountedProducts.length > 0">
+    <li *ngFor="let product of discountedProducts">
+<div class="product-content" (click)="goToProduct(product.link)">
+        <img [src]="product.imageUrl" alt="Product Image" class="product-image" />
+    
+        <div class="texts">
+          <strong>Ürün:</strong> {{ product.productName }}<br>
+    
+          <strong>Fiyat:</strong>
+          <span *ngIf="product.originalPrice !== 'Fiyat bilgisi yok'" class="original-price">
+            {{ product.originalPrice }}
+          </span>
+          <span [ngClass]="{'discounted-price': product.originalPrice !== 'Fiyat bilgisi yok', 'normal-price': product.originalPrice === 'Fiyat bilgisi yok'}">
+            {{ product.productPrice }}
+          </span><br>
+    
+          <strong>Stok Durumu:</strong>
+          <span [ngClass]="{'in-stock': product.inStock === 'True', 'out-of-stock': product.inStock === 'False'}">
+            {{ product.inStock === 'True' ? 'Stokta var' : 'Stokta yok' }}
+          </span><br>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

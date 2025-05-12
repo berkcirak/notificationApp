@@ -6,6 +6,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { ProductsComponent } from './components/products/products.component';
 import { AddproductComponent } from './components/addproduct/addproduct.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { DiscountedproductsComponent } from './components/discountedproducts/discountedproducts.component';
 
 export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -15,5 +16,6 @@ export const routes: Routes = [
   { path: 'myproducts', component: ProductsComponent },
   { path: 'addproduct', component: AddproductComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'discounted', component: DiscountedproductsComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'full' } // Varsayılan yönlendirme
 ];

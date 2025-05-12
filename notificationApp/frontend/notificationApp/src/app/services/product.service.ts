@@ -57,5 +57,10 @@ export class ProductService {
     })
     return this.http.get<any[]>(this.productUrl +'/by-category', { headers, params: { category } });
   }
-
+  getDiscountedProducts(): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.get<Product[]>(this.productUrl + '/discounted', { headers })
+  }
 }

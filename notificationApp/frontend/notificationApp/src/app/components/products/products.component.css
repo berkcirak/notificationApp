@@ -33,6 +33,12 @@ strong{
     margin:6px;
     margin-bottom:14px;
 }
+.no-products-message{
+  text-align: center;
+  margin-top: 200px;
+  font-size: 18px;
+  color: #333;
+}
 .texts{
     border:30px;
     margin-left: 15px;

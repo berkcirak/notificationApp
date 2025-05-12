@@ -1,5 +1,10 @@
 <div class="product-container">
     <h2>Ürünlerim</h2>
+
+    <div *ngIf="products.length === 0" class="no-products-message">
+      Henüz bir ürün eklemediniz.
+    </div>
+
     <ul class="product-list">
       <li *ngFor="let product of products" class="product-item" >
         <div class="product-content" (click)="goToProduct(product.link)">
