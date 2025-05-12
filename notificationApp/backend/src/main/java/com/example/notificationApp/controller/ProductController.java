@@ -95,4 +95,8 @@ public class ProductController {
     public List<Product> getProductsByCategory(@RequestParam String category){
         return productService.getProductsByCategory(category);
     }
+    @GetMapping("/discounted")
+    public List<Product> getDiscountedProducts(){
+        return productService.getDiscountedProducts();
+    }
 }

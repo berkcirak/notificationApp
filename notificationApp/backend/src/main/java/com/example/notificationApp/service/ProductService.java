@@ -252,4 +252,7 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
+    public List<Product> getDiscountedProducts(){
+        return productRepository.findProductByOriginalPriceNot("Fiyat bilgisi yok");
+    }
 }

@@ -10,4 +10,6 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     List<Product> findAllByUserId(int id);
+
+    List<Product> findProductByOriginalPriceNot(String originalPrice);
 }

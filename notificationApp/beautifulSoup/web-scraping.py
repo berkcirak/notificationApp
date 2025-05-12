@@ -100,9 +100,9 @@ def scrape_product():
             if original_price_span:
                 raw_text = original_price_span.get_text(strip=True)
                 match = re.search(r"\d{1,3}(?:\.\d{3})*", raw_text)  # ✔ SADECE 44.829 gibi değerler için
-                originalPrice = match.group(0) + " TL" if match else None
+                originalPrice = match.group(0) + " TL" if match else "Fiyat bilgisi yok"
             else:
-                originalPrice = None
+                originalPrice = "Fiyat bilgisi yok"
 
             image_element = content.find("img", id="landingImage")
             image_url = None
