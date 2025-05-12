@@ -15,10 +15,10 @@
             <strong>Ürün:</strong> {{ product.productName }}<br>
             
             <strong>Fiyat:</strong>
-            <span *ngIf="product.originalPrice !== 'None'" class="original-price"> 
+            <span *ngIf="product.originalPrice !== 'Fiyat bilgisi yok'" class="original-price"> 
               {{ product.originalPrice }}
             </span>
-            <span [ngClass]="{'discounted-price': product.originalPrice !== 'None', 'normal-price': product.originalPrice === 'None'}">
+            <span [ngClass]="{'discounted-price': product.originalPrice !== 'Fiyat bilgisi yok', 'normal-price': product.originalPrice === 'Fiyat bilgisi yok'}">
               {{ product.productPrice }}
             </span>
              <br>

@@ -200,3 +200,13 @@ strong{
 .search-box button:hover {
   background-color: #005b99;
 }
+.no-products-message {
+  text-align: center;
+  margin-top: 200px;
+  font-size: 18px;
+  color: #333;
+}
+.message-for-enjoy{
+  display: flex;
+  justify-content: center;
+}

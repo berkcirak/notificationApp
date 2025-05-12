@@ -24,7 +24,13 @@
   </div>
 </mat-nav-list>
 
+<h2 *ngIf="recommendedProducts.length === 0" class="no-products-message">
+  Hemen ürün eklemeye başlayın!
+</h2>
 
+<h2 *ngIf="recommendedProducts.length>0" class="message-for-enjoy">
+  Beğenebileceğiniz Ürünler
+</h2>
 <div class="product-container">
   <h2 *ngIf="selectedCategory">Kategori: {{ selectedCategory }}</h2>
   <ul class="product-list">
