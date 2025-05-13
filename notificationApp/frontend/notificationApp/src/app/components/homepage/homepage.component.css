@@ -50,21 +50,22 @@
   color: #333;
   margin-bottom: 20px;
 }
-ul {
+ul.product-list {
   list-style: none;
   padding: 0;
-  gap: 20px;
   display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap; /* wrap olarak değiştirildi */
+  justify-content: center; /* Ortalamayı sağlar */
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 li {
   background-color: #fff;
   border-radius: 10px;
   padding: 20px;
-  width: 400px; /* genişliği biraz küçülttüm, çünkü 700px fazla taşırabilir */
-  margin: 20px; /* aralarındaki boşluk yeterli olur */
+  height: 400px;
+  width: 300px;
+  margin: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -73,21 +74,22 @@ strong{
   margin:6px;
   margin-bottom:14px;
 }
-.texts{
-  border:30px;
-  margin-top: 60px
+.texts {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
+
 .product-content {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column; /* Üstten alta sıralama */
+  align-items: center;
+  text-align: center;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  padding: 10px;
 }
-.product-content:hover {
-  transform: scale(1.02);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
+
 
 .in-stock {
   color: green;
@@ -115,11 +117,10 @@ strong{
   margin-right: 5px;
 }
 .product-image {
-  width: 150px;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 10px;
+  width: 200px;
+  height: 200px;
   object-fit: contain;
+  border-radius: 10px;
 }
 .category-section {
   margin-top: 20px;
@@ -209,4 +210,11 @@ strong{
 .message-for-enjoy{
   display: flex;
   justify-content: center;
+}
+li.product-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+li.product-item {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }

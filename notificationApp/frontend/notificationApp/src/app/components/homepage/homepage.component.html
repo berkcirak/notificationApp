@@ -28,34 +28,46 @@
   Hemen ürün eklemeye başlayın!
 </h2>
 
-<h2 *ngIf="recommendedProducts.length>0" class="message-for-enjoy">
+<h2 *ngIf="recommendedProducts.length>0 && !selectedCategory" class="message-for-enjoy">
   Beğenebileceğiniz Ürünler
 </h2>
 <div class="product-container">
   <h2 *ngIf="selectedCategory">Kategori: {{ selectedCategory }}</h2>
   <ul class="product-list">
-    <li *ngFor="let product of filteredProducts" class="product-item">
-      <div class="product-content" (click)="goToProduct(product.link)">
-        <img [src]="product.imageUrl" alt="Product Image" class="product-image" />
-    
-        <div class="texts">
-          <strong>Ürün:</strong> {{ product.productName }}<br>
-    
+  <li *ngFor="let product of filteredProducts" class="product-item">
+    <div class="product-content" (click)="goToProduct(product.link)">
+      <img [src]="product.imageUrl" alt="Product Image" class="product-image" />
+
+      <div class="texts">
+        <p><strong>Ürün:</strong> {{ product.productName }}</p>
+        <p>
           <strong>Fiyat:</strong>
           <span *ngIf="product.originalPrice !== 'Fiyat bilgisi yok'" class="original-price">
             {{ product.originalPrice }}
           </span>
-          <span [ngClass]="{'discounted-price': product.originalPrice !== 'Fiyat bilgisi yok', 'normal-price': product.originalPrice === 'Fiyat bilgisi yok'}">
+          <span
+            [ngClass]="{
+              'discounted-price': product.originalPrice !== 'Fiyat bilgisi yok',
+              'normal-price': product.originalPrice === 'Fiyat bilgisi yok'
+            }"
+          >
             {{ product.productPrice }}
-          </span><br>
-    
+          </span>
+        </p>
+        <p>
           <strong>Stok Durumu:</strong>
-          <span [ngClass]="{'in-stock': product.inStock === 'True', 'out-of-stock': product.inStock === 'False'}">
+          <span
+            [ngClass]="{
+              'in-stock': product.inStock === 'True',
+              'out-of-stock': product.inStock === 'False'
+            }"
+          >
             {{ product.inStock === 'True' ? 'Stokta var' : 'Stokta yok' }}
-          </span><br>
-        </div>
+          </span>
+        </p>
       </div>
-    </li>
-    
-  </ul>
+    </div>
+  </li>
+</ul>
+
 </div>

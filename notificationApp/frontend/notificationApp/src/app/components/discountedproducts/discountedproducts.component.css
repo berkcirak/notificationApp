@@ -1,205 +1,77 @@
-.main-category-bar {
+
+h2{
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  background-color: whitesmoke;
-  border-bottom: 1px solid #ccc;
-  padding: 10px 0;
-  gap: 20px;
 }
 
-.main-category-wrapper {
-  position: relative;
-}
-
-.main-category-item {
-  font-weight: 600;
-  border-radius: 6px;
-  transition: background-color 0.3s;
-  padding: 8px 16px;
-}
-
-.main-category-item:hover {
-  background-color:rgb(173, 173, 173);
-  color: white;
-}
-
-.sub-category-list {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  min-width: 180px;
-  background-color: whitesmoke;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-  border-radius: 6px;
-  padding: 8px 0;
-  z-index: 10;
-}
-
-
-.product-container {
-  margin: 20px auto;
-  max-width: 1500px;
-  padding: 20px;
-  background-color: whitesmoke;
-  border-radius: 10px;
-}
-
-.product-container h2 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 20px;
-}
-ul {
+.discounted-products ul.product-list {
   list-style: none;
   padding: 0;
-  gap: 20px;
   display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap; /* wrap olarak değiştirildi */
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-li {
+.discounted-products li.product-item {
   background-color: #fff;
   border-radius: 10px;
   padding: 20px;
-  width: 400px; /* genişliği biraz küçülttüm, çünkü 700px fazla taşırabilir */
-  margin: 20px; /* aralarındaki boşluk yeterli olur */
+  width: 300px;
+  height: 400px;
+  margin: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-h2{
-    display: flex;
-    justify-content: center;
-}
-strong{
-  margin:6px;
-  margin-bottom:14px;
-}
-.texts{
-  border:30px;
-  margin-top: 60px
-}
-.product-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  cursor: pointer;
   transition: transform 0.2s ease;
+  cursor: pointer;
 }
-.product-content:hover {
+
+.discounted-products li.product-item:hover {
   transform: scale(1.02);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.in-stock {
-  color: green;
-  font-weight: bold;
+.discounted-products .product-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-.out-of-stock {
-  color: red;
-  font-weight: bold;
-}/* Eğer ürün indirimsizse (sadece tek fiyat gösterilecekse) */
-.normal-price {
-  color: black;
+.discounted-products .product-image {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
-/* 🔥 Eğer ürün indirimliyse (yeşil renkte göster) */
-.discounted-price {
-  color: green;
-  font-weight: bold;
+.discounted-products .texts {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
-/* 🔥 Eğer indirimli ürün varsa, eski fiyatı üstü çizili göster */
-.original-price {
+.discounted-products .original-price {
   text-decoration: line-through;
   color: gray;
   margin-right: 5px;
 }
-.product-image {
-  width: 150px;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  object-fit: contain;
-}
-.category-section {
-  margin-top: 20px;
-  padding: 10px 0;
-  background-color: whitesmoke;
-  border-bottom: 1px solid #ddd;
-  overflow-x: auto;
-  white-space: nowrap;
+
+.discounted-products .discounted-price {
+  color: green;
+  font-weight: bold;
 }
 
-.category-list {
-  display: flex;
-  flex-direction: row;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  overflow-x: auto;
-  white-space: nowrap;
+.discounted-products .normal-price {
+  color: black;
 }
 
-.category-list li {
-  margin: 0 12px;
-  padding: 8px 16px;
-  width: 200px;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
+.discounted-products .in-stock {
+  color: green;
+  font-weight: bold;
 }
 
-.category-list li:hover {
-  background-color: #007bff;
-  color: white;
-  border-color: #007bff;
-}
-
-.category-list h5 {
-  margin: 0;
-  font-size: 14px;
-}
-.search-container {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-}
-
-.search-box {
-  width: 50%;
-  max-width: 600px;
-  display: flex;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: white;
-}
-
-.search-box input[type="text"] {
-  flex: 1;
-  padding: 10px 15px;
-  border: none;
-  font-size: 16px;
-  outline: none;
-}
-
-.search-box button {
-  padding: 10px 20px;
-  border: none;
-  background-color: #007acc;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.search-box button:hover {
-  background-color: #005b99;
+.discounted-products .out-of-stock {
+  color: red;
+  font-weight: bold;
 }

@@ -4,20 +4,20 @@ export class Categories{
     'Kazak', 'Yelek', 'Ceket', 'Gömlek', 'Çorap', 'Çanta'
     ];
     static electronicsCategory: string[] = [
-        'Telefon', 'Laptop', 'Tablet', 'Kulaklık', 'Akıllı Saat',
+        'Telefon', 'Bilgisayar', 'Tablet', 'Kulaklık', 'Akıllı Saat',
     'Kamera', 'Televizyon', 'Hoparlör', 'Buzdolabı', 'Çamaşır Makinesi',
     'Bulaşık Makinesi', 'Ütü', 'Oyun Konsolu'
     ];
     static hobbyCategory: string[] = [
         'Drone', 'Bisiklet', 'Scooter', 'Top', 'Raket',
-    'Pota', 'Kitap', 'Kaykay', 'Paten', 'Gitar'
+     'Kitap', 'Kaykay', 'Paten', 'Gitar'
     ];
     static cosmeticsCategory: string[] = [
-        'Parfüm', 'Makyaj', 'Rimel', 'Duş Jeli', 'Şampuan', 'Ruj',
+        'Parfüm', 'Makyaj', 'Duş Jeli', 'Şampuan', 'Ruj',
     'Deodorant', 'Nemlendirici', 'Krem', 'Diş Macunu', 'Diş Fırçası', 'Ağda'
     ];
     static householdCategory: string[] = [
-        'Ayna', 'Koltuk', 'Tava', 'Tabak', 'Çatal', 'Kaşık',
+        'Ayna', 'Koltuk', 'Tava', 'Tabak', 'Çatal Kaşık Bıçak',
     'Yastık', 'Avize', 'Yemek Takımı', 'Yorgan'
     ];
 

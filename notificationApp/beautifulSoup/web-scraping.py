@@ -3,7 +3,7 @@ import time
 import requests
 from flask import Flask, request, jsonify
 from bs4 import BeautifulSoup
-
+from playwright.sync_api import sync_playwright
 app = Flask(__name__)
 
 @app.route('/scrape', methods=['GET'])
@@ -132,11 +132,11 @@ def scrape_product():
                 "productCategory": product_category,
                 "description": description
             })
+        
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
-
 
 
