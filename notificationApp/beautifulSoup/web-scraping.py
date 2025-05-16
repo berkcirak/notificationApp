@@ -132,7 +132,39 @@ def scrape_product():
                 "productCategory": product_category,
                 "description": description
             })
-        
+        elif "vatanbilgisayar" in url:
+            price_element = content.select_one("div.product-detail-price-big span.product-list__price")
+            product_price = price_element.get_text(strip=True) + " TL" if price_element else "Fiyat bilgisi yok"
+
+            original_price_element = content.select_one(".product-list__current-price")
+            originalPrice = original_price_element.get_text(strip=True) if original_price_element else "Fiyat bilgisi yok"
+
+            name_element = content.select_one("h1.product-list__product-name")
+            product_name = name_element.get_text(strip=True) if name_element else "Ürün adı bulunamadı"
+
+            breadcrumb_items = content.select("ul.breadcrumb li a")
+            categories = [item.get_text(strip=True) for item in breadcrumb_items]
+            product_category = categories[-3] if len(categories) >= 3 else None
+
+            description_div = content.select_one("div.product-list__description")
+            description = description_div.get_text(strip=True) if description_div else "Açıklama bulunamadı"
+
+            image_element = content.select_one("img.wrapper-main-slider__image")
+            image_url = image_element.get("src") if image_element else None
+
+            stock_element = content.select_one("a.btn-nonstock")
+            is_in_stock = not bool(stock_element)
+
+            return jsonify({
+                "name": product_name,
+                "price": str(product_price),
+                "stock": str(is_in_stock),
+                "originalPrice": str(originalPrice),
+                "imageUrl": image_url,
+                "productCategory": product_category,
+                "description": description
+            })
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
