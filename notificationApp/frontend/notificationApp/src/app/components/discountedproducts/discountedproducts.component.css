@@ -21,14 +21,21 @@ h2{
   height: 400px;
   margin: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
 
 .discounted-products li.product-item:hover {
-  transform: scale(1.02);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
+.gradient-divider {
+    height: 1px;
+    width: 100%;
+    background: rgb(23, 19, 87); /* Gradient renkleri */
+    margin: 0 auto; /* Kenarlardan biraz boşluk bırak */
+    border-radius: 2px; /* Kenarları yuvarlat */
+  }
 
 .discounted-products .product-content {
   display: flex;

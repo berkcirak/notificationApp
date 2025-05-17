@@ -164,6 +164,56 @@ def scrape_product():
                 "productCategory": product_category,
                 "description": description
             })
+        elif "teknosa" in url:
+            price_element = content.select_one("span.prc.prc-third")
+            price = price_element.get_text(strip=True) if price_element else "Fiyat bilgisi yok"
+
+            name_element = content.select_one("input.productNameReplace")
+            product_name = name_element.get("value").strip() if name_element else "Ürün adı bulunamadı"
+
+            breadcrumb_items = content.select("ol.breadcrumb li")
+            if len(breadcrumb_items) >= 2:
+                product_category = breadcrumb_items[-2].get_text(strip=True)
+            else:
+                product_category = None
+
+            # Açıklama (teknik özellikler tablosu)
+            tech_table = content.select("table.tablefeature td")
+            description_items = [td.get_text(strip=True) for td in tech_table if td.get_text(strip=True)]
+            description = "\n".join(description_items) if description_items else "Açıklama yok"
+
+            breadcrumb = content.find("ol", class_="breadcrumb")
+            image_url = None
+            if breadcrumb:
+                current = breadcrumb
+                while current:
+                    current = current.find_next()
+                    if current.name == "img":
+                        image_url = (
+                                current.get("src") or
+                                current.get("data-src") or
+                                current.get("srcset") or
+                                current.get("data-srcset")
+                        )
+                        break
+
+            # İndirimli fiyat varsa çek
+            original_price_element = content.select_one("span.prc.prc-first")
+            original_price = original_price_element.get_text(strip=True) if original_price_element else "Fiyat bilgisi yok"
+
+            # 🔍 Stok durumu: Eğer "Sepete Ekle" butonu varsa stokta var
+            stock_button = content.select_one("button.add-to-cart-button")
+            is_in_stock = not bool(stock_button)  # True = stokta, False = yok
+
+            return jsonify({
+                "name": product_name,
+                "price": str(price),
+                "stock": str(is_in_stock),  # bunu istersen ileride img altına sepete ekle butonu var mı diye güncelleyebiliriz
+                "originalPrice": str(original_price),
+                "imageUrl": image_url,
+                "productCategory": product_category,
+                "description": description
+            })
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500

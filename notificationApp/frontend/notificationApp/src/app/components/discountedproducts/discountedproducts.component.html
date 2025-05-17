@@ -6,7 +6,7 @@
     <li *ngFor="let product of discountedProducts" class="product-item">
       <div class="product-content" (click)="goToProduct(product.link)">
         <img [src]="product.imageUrl" alt="Product Image" class="product-image" />
-
+        <div class="gradient-divider"></div>
         <div class="texts">
           <p><strong>Ürün:</strong> {{ product.productName }}</p>
 
