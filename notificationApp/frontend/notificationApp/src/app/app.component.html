@@ -7,7 +7,7 @@
         {{ userProfile.username }}
       </button>
       <button mat-button *ngIf="!userProfile" disabled>Misafir</button>
-      <button mat-button (click)="logout()" [ngStyle]="{'color': 'black'}">Logout</button>
+      <button mat-button (click)="logout()" [ngStyle]="{'color': 'red'}">Logout</button>
     </div>
   </mat-toolbar>
 

@@ -191,15 +191,16 @@ strong{
 .search-box button {
   padding: 10px 20px;
   border: none;
-  background-color: #007acc;
+  background-color: rgb(19, 29, 73);
   color: white;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
+
 .search-box button:hover {
-  background-color: #005b99;
+  background-color: rgb(22, 23, 94);
 }
 .no-products-message {
   text-align: center;
