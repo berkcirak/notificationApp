@@ -10,7 +10,7 @@
         <div class="product-content" (click)="goToProduct(product.link)">
           
             <img [src]="product.imageUrl" alt="Product Image" class="product-image" />          
-            
+            <div class="gradient-divider"></div>
             <div class="texts">
             <strong>Ürün:</strong> {{ product.productName }}<br>
             
@@ -31,7 +31,7 @@
           
           </div>
           <div class="actions" (click)="$event.stopPropagation()">
-            <button (click)="deleteProduct(product.id)">Delete</button>
+            <button (click)="deleteProduct(product.id)">Sil</button>
           </div>
           
         </div>

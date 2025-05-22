@@ -21,7 +21,7 @@ export class AppComponent {
   username: string | null = null;
   isAuthRoute: boolean = false;
   userProfile: any = null;
-  title = 'notificationApp';
+  title = 'Tilkice';
 
   constructor(
     private router: Router,

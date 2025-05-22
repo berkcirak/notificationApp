@@ -59,7 +59,7 @@ html, body{
   }
   
   .side-navbar {
-    width: 300px;
+    width: 350px;
     height: 100vh;
     overflow-y: auto;
     position: sticky;

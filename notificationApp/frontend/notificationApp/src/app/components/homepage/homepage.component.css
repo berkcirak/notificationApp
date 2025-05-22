@@ -219,3 +219,10 @@ li.product-item:hover {
 li.product-item {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+.gradient-divider {
+    height: 1px;
+    width: 100%;
+    background: rgb(23, 19, 87); /* Gradient renkleri */
+    margin: 0 auto; /* Kenarlardan biraz boşluk bırak */
+    border-radius: 2px; /* Kenarları yuvarlat */
+  }

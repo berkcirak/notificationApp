@@ -146,8 +146,9 @@ def scrape_product():
             categories = [item.get_text(strip=True) for item in breadcrumb_items]
             product_category = categories[-3] if len(categories) >= 3 else None
 
-            description_div = content.select_one("div.product-list__description")
-            description = description_div.get_text(strip=True) if description_div else "Açıklama bulunamadı"
+            td_elements = content.select("div.product-feature table.product-table td")
+            description_items = [td.get_text(strip=True) for td in td_elements if td.get_text(strip=True)]
+            description = "\n".join(description_items) if description_items else "Açıklama bulunamadı"
 
             image_element = content.select_one("img.wrapper-main-slider__image")
             image_url = image_element.get("src") if image_element else None
@@ -178,8 +179,8 @@ def scrape_product():
                 product_category = None
 
             # Açıklama (teknik özellikler tablosu)
-            tech_table = content.select("table.tablefeature td")
-            description_items = [td.get_text(strip=True) for td in tech_table if td.get_text(strip=True)]
+            td_elements = content.select("table.tableFeature td")
+            description_items = [td.get_text(strip=True) for td in td_elements if td.get_text(strip=True)]
             description = "\n".join(description_items) if description_items else "Açıklama yok"
 
             breadcrumb = content.find("ol", class_="breadcrumb")
