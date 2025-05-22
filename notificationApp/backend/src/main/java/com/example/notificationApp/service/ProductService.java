@@ -216,7 +216,7 @@ public class ProductService {
 
             for (RecommendedProduct rp : recommendations){
                 Product recommended = rp.getRecommendedProduct();
-                if (!addedProductIds.contains(recommended.getId())){
+                if (!addedProductIds.contains(recommended.getId()) && !Objects.equals(recommended.getUser().getId(), currentUser.getId())){
                     allRecommendedProducts.add(recommended);
                     addedProductIds.add(recommended.getId());
                 }

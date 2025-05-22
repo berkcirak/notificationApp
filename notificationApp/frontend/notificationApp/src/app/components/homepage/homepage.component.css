@@ -52,9 +52,9 @@
 }
 ul.product-list {
   list-style: none;
-  padding: 0;
+  padding: 0 145px;
   display: flex;
-  justify-content: center; /* Ortalamayı sağlar */
+  justify-content: flex-start; /* Ortalamayı sağlar */
   flex-wrap: wrap;
   gap: 20px;
 }

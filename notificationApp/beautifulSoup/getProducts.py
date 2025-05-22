@@ -18,10 +18,11 @@ def compute_similarity():
     for p in all_products:
         name = p.get('productName', '')
         desc = p.get('description', '')
-        combined_texts.append(f"{name} {desc}")
+        category = p.get('category', {}).get('name', '')
+        combined_texts.append(f"{name} {desc} {category}")
 
     # Yeni ürünün ismi ve açıklamasını birleştir
-    new_product_text = f"{new_product.get('productName', '')} {new_product.get('description', '')}"
+    new_product_text = f"{new_product.get('productName', '')} {new_product.get('description', '')} {new_product.get('category', {}).get('name', '')}"
 
     # TF-IDF vektörleştirme
     vectorizer = TfidfVectorizer(stop_words=None)
